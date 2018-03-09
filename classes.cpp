@@ -1,3 +1,8 @@
+#include <iostream>
+#include <set>
+#include <iterator>
+ 
+using namespace std;
 /** @defgroup group1 The First Group
  *  This is the first group
  *  @{
@@ -14,19 +19,36 @@ class Point{
 public:
 	//! Accessor function to get the x coordinate of point
 	float getX(){
-
+		return x;
 	}
 	//! Accessor function to get the y coordinate of point
 	float getY(){
-
+		return y;
 	}
 	//! Accessor function to get the z coordinate of point
 	float getZ(){
-
+		return z;
 	}
+  
+  void setX(float x){
+		this.x = x;
+	}
+	//! Accessor function to get the y coordinate of point
+	void setY(float y){
+		this.y = y;
+	}
+	//! Accessor function to get the z coordinate of point
+	void setZ(float z){
+		this.z = z;
+	}
+  
 	//! Accessor function to get the array of coordinates of point
 	float* getArrayCoors(){
-
+		float ar[3];
+		ar[0] = x;
+		ar[1] = y;
+		ar[2] = z;
+		return ar;
 	}
 }
 
@@ -42,17 +64,25 @@ class Line{
 public:
 	//! Accessor function to get the first end point
 	Point getFirstPoint(){
-
+		return p1;
 	}
 	//! Accessor function to get the second end point
 	Point getSecondPoint(){
-
+		return p2;
 	}
 	//! Accessor function to get the array of end points
 	Point* getArrayPoints(){
-
+		Point ar[2] = {p1,p2};
+		return ar;
 	}
-
+	
+  void setFirstPoint(Point p1){
+    this.p1 = p1;
+  }
+  
+  void setSecondPoint(Point p2){
+    this.p2 = p2;
+  }
 }
 
 /*! \class Plane
@@ -67,16 +97,25 @@ class Plane{
 public:
 	//! Accessor function to get the first line
 	Line getFirstLine(){
-
+		return l1;
 	}
 	//! Accessor function to get the second line
 	Line getSecondLine(){
-
+		return l2;
 	}
 	//! Accessor function to get array of lines
 	Line* getArrayLines(){
-
+		Line ar[2] = {l1,l2};
+		return ar;
 	}
+  
+  void setFirstLine(Line l1){
+    this.l1 = l1;
+  }
+  
+  void setSecondLine(Line l2){
+    this.l2 = l2;
+  }
 
 }
 /** @} */ // end of group1
@@ -190,11 +229,11 @@ class TwoDView{
 public:
 	//! Accessor function to get the array of points
 	Point* getPoints(){
-
+		return points;
 	}
 	//! Accessor function to get the array of lines
 	Line* getLines(){
-
+		return lines;
 	}
 
 }
@@ -211,15 +250,15 @@ class TwoDModel{
 public:
 	//! Accessor function to get the front view
 	TwoDView getFrontView(){
-
+		return frontView;
 	}
 	//! Accessor function to get the top view
 	TwoDView getTopView(){
-
+		return topView;
 	}	
 	//! Accessor function to get the side view
 	TwoDView getSideView(){
-
+		return sideView;
 	}
 
 
@@ -239,15 +278,15 @@ class ThreeDModel{
 public:
 	//! Accessor function to get the vertices
 	Point* getPoints(){
-
+		return points;
 	}
 	//! Accessor function to get the lines
 	Line* getLines(){
-
+		return lines;
 	}
 	//! Accessor function to get the surfaces
 	Planes* getSurfaces(){
-
+		return planes;
 	}
 
 }
@@ -266,16 +305,51 @@ class TwoDModelGenerator{
 
 public:
 	//! Input function to get the 3D model
-	void getThreeDModel(){
-
-	}
+	TwoDModelGenerator(ThreeDModel model){
+    
+  }
 	//! Rotator function takes 3D model and returns the rotated 3D model
 	ThreeDModel rotator(){
 
 	}
+	//plane can be x,y,z
+	Point _3Dto2DPoint(Point p, string plane){
+		Point _3DPoint = new Point();
+    _3DPoint.x = p.x;
+    _3DPoint.y = p.y;
+    _3DPoint.z = p.z;
+    if(plane == "xy" || plane == "yx"){
+      _3DPoint.z = 0;
+    }
+    if(plane == "yz" || plane == "zy"){
+      _3DPoint.x = 0;
+    }
+    if(plane == "zx" || plane == "xz"){
+      _3DPoint.y = 0;
+    }
+    return _3DPoint;
+	}
+	//
+	Line* _3Dto2DLine(Line* lineArray, char plane, int arraySize){
+		Line _2DLineArray[arraySize];
+    for (int i = 0; i < arraySize; i++){
+      Line _3DLine = *lineArray;
+      Point _3Dp1 = _3DLine.getFirstPoint();
+      Point _3Dp2 = _3DLine.getSecondPoint();
+      Point _2Dp1 = _3Dto2DPoint(_3Dp1, plane);
+      Point _2Dp2 = _3Dto2DPoint(_3Dp2, plane);
+      Line _2DLine;
+      _2DLine.setFirstPoint(_2Dp1);
+      _2DLine.setFirstPoint(_2Dp2);
+      _2DLineArray[i] = _2DLine;
+      lineArray++;
+    }
+    return _2DLineArray;
+	}
 	//! Output function returns a 2D model 
 	TwoDmodel output(){
-
+		TwoDmodel _2Dmodel;
+    
 	}
 }
 
@@ -348,6 +422,3 @@ public:
 
 	}
 }
-
-
-
