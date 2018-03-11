@@ -223,8 +223,9 @@ A class representing a single view of the orthographic projections
 class TwoDView{
 	//! Private array of points and lines are instantiated 
 	Point* points; /*< points represents the vertices */
-
+	int pointSize = 0;
 	Line* lines; /*< lines represents the edges */
+	int lineSize = 0;
 
 public:
 	//! Accessor function to get the array of points
@@ -235,6 +236,30 @@ public:
 	Line* getLines(){
 		return lines;
 	}
+	void setPoints(Point* p){
+		this.points = p;
+	}
+
+	void setLines(Line* l){
+		this.lines = l;
+	}
+
+	int getPointSize(){
+		return pointSize;
+	}
+
+	int getLineSize(){
+		return lineSize;
+	}
+
+	void setPointSize(int s){
+		this.pointSize += s;
+	}
+
+	void setLineSize(int s){
+		this.lineSize += s;
+	}
+
 
 }
 
@@ -261,6 +286,19 @@ public:
 		return sideView;
 	}
 
+	void setFrontView(TwoDView v){
+		this.frontView = v;
+	}
+
+	void setTopView(TwoDView v){
+		this.topView = v;
+	}
+
+	void setSideView(TwoDView v){
+		this.sideView = v;
+	}
+
+
 
 }
 
@@ -270,10 +308,11 @@ A class representing a 3D model containing the vertices, edges and surfaces
 class ThreeDModel{
 
 	Point* points; /*< points represent the vertices */ 
-
+	int pointSize = 0;
 	Line* lines; /*< lines represent the edges */
-
+	int lineSize = 0;
 	Planes* planes; /*< planes represent the surfaces */
+	int planeSize = 0;
 
 public:
 	//! Accessor function to get the vertices
@@ -285,8 +324,44 @@ public:
 		return lines;
 	}
 	//! Accessor function to get the surfaces
-	Planes* getSurfaces(){
+	Planes* getPlanes(){
 		return planes;
+	}
+
+	void setPoints(Point* p){
+		this.points = p;
+	}
+
+	void setLines(Line* l){
+		this.lines = l;
+	}
+
+	void setPlanes(Plane* p){
+		this.planes = p;
+	}
+
+	int getPointSize(){
+		return pointSize;
+	}
+
+	int getLineSize(){
+		return lineSize;
+	}
+
+	int getPlaneSize(){
+		return planeSize;
+	}
+
+	void setPointSize(int s){
+		this.pointSize += s;
+	}
+
+	void setLineSize(int s){
+		this.lineSize += s;
+	}
+
+	void setPlaneSize(int s){
+		this.planeSize += s;
 	}
 
 }
@@ -306,13 +381,11 @@ class TwoDModelGenerator{
 public:
 	//! Input function to get the 3D model
 	TwoDModelGenerator(ThreeDModel model){
-    
+    this.model = model;
   }
-	//! Rotator function takes 3D model and returns the rotated 3D model
-	ThreeDModel rotator(){
 
-	}
-	//plane can be x,y,z
+
+	//plane can be xy,yz,zx
 	Point _3Dto2DPoint(Point p, string plane){
 		Point _3DPoint = new Point();
     _3DPoint.x = p.x;
@@ -329,8 +402,19 @@ public:
     }
     return _3DPoint;
 	}
-	//
-	Line* _3Dto2DLine(Line* lineArray, char plane, int arraySize){
+	//return array of 2D points given array of 3D points and plane
+	Point* _3Dto2DPoints(Point* pointArray, string plane, int arraySize){
+		Point _2DPointsArray[arraySize];
+		for (int i = 0; i < arraySize; i++){
+      		Point _3DPoint = *pointArray;
+      		Point _2DPoint = _3Dto2DPoint(_3DPoint, plane);
+      		_2DPointsArray[i] = _2DPoint;
+      		pointArray++;
+    	}
+    	return _2DPointsArray;
+	}
+	//return array of 2D lines given array of 3D lines and plane
+	Line* _3Dto2DLine(Line* lineArray, string plane, int arraySize){
 		Line _2DLineArray[arraySize];
     for (int i = 0; i < arraySize; i++){
       Line _3DLine = *lineArray;
@@ -348,8 +432,27 @@ public:
 	}
 	//! Output function returns a 2D model 
 	TwoDmodel output(){
-		TwoDmodel _2Dmodel;
-    
+		int pointSize = model.getPointSize();
+		int lineSize = model.getLineSize();
+
+		TwoDView xy;
+		xy.setPoints(_3Dto2DPoints(model.getPoints(),"xy",pointSize));
+		xy.setLines(_3Dto2DPoints(model.getLines(),"xy",lineSize));
+
+		TwoDView yz;
+		xy.setPoints(_3Dto2DPoints(model.getPoints(),"yz",pointSize));
+		xy.setLines(_3Dto2DPoints(model.getLines(),"yz",lineSize));
+
+		TwoDView zx;
+		xy.setPoints(_3Dto2DPoints(model.getPoints(),"zx",pointSize));
+		xy.setLines(_3Dto2DPoints(model.getLines(),"zx",lineSize));
+
+		TwoDModel output;
+		output.setFrontView(xy);
+		output.setFrontView(yz);
+		output.setFrontView(zx);
+
+		return output;
 	}
 }
 
@@ -422,3 +525,6 @@ public:
 
 	}
 }
+
+
+
