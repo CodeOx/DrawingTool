@@ -449,8 +449,8 @@ public:
 
 		TwoDModel output;
 		output.setFrontView(xy);
-		output.setFrontView(yz);
-		output.setFrontView(zx);
+		output.setTopView(yz);
+		output.setSideView(zx);
 
 		return output;
 	}

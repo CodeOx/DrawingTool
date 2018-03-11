@@ -1,6 +1,7 @@
 #include "model.h"
-#include "view.h"
-#include "geometry.h"
+
+#ifndef THREEDMODELGENERATOR_H
+#define THREEDMODELGENERATOR_H
 
 class ThreeDModelGenerator{
 
@@ -26,3 +27,5 @@ public:
 	//! This function returns the final ThreeDModel object 
 	ThreeDModel output();
 };
+
+#endif

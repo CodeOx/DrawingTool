@@ -1,5 +1,8 @@
 #include "geometry.h"
 
+#ifndef TWODVIEW_H
+#define TWODVIEW_H
+
 class TwoDView{
 	//! Private array of points and lines are instantiated 
 	Point* points; /*< points represents the vertices */
@@ -22,3 +25,5 @@ public:
 	void setPointSize(int s);
 	void setLineSize(int s);
 };
+
+#endif

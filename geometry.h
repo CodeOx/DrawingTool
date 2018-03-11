@@ -1,3 +1,6 @@
+#ifndef POINT_H
+#define POINT_H
+
 /*! \class Point
 A class to represent a point in space
 */
@@ -24,6 +27,11 @@ public:
 	float* getArrayCoors();
 };
 
+#endif
+
+#ifndef LINE_H
+#define LINE_H
+
 /*! \class Line 
 A class to represent a line in space
 */
@@ -44,6 +52,11 @@ public:
     void setSecondPoint(Point p2);
 };
 
+#endif
+
+#ifndef PLANE_H
+#define PLANE_H
+
 /*! \class Plane
 A class to represent a plane in space
 */
@@ -63,3 +76,5 @@ public:
   	void setFirstLine(Line l1);
     void setSecondLine(Line l2);
 };
+
+#endif

@@ -1,5 +1,7 @@
-#include "geometry.h"
 #include "view.h"
+
+#ifndef TWODMODEL_H
+#define TWODMODEL_H
 
 /*! \class TwoDModel
 A class representing a 2D model containing the three views
@@ -23,6 +25,11 @@ public:
 	void setSideView(TwoDView v);
 };
 
+#endif
+
+#ifndef THREEDMODEL_H
+#define THREEDMODEL_H
+
 /*! \class ThreeDModel
 A class representing a 3D model containing the vertices, edges and surfaces
 */
@@ -32,7 +39,7 @@ class ThreeDModel{
 	int pointSize = 0;
 	Line* lines; /*< lines represent the edges */
 	int lineSize = 0;
-	Planes* planes; /*< planes represent the surfaces */
+	Plane* planes; /*< planes represent the surfaces */
 	int planeSize = 0;
 
 public:
@@ -41,7 +48,7 @@ public:
 	//! Accessor function to get the lines
 	Line* getLines();
 	//! Accessor function to get the surfaces
-	Planes* getPlanes();
+	Plane* getPlanes();
 
 	void setPoints(Point* p);
 	void setLines(Line* l);
@@ -55,3 +62,5 @@ public:
 	void setLineSize(int s);
 	void setPlaneSize(int s);
 };
+
+#endif
