@@ -14,7 +14,8 @@ bool checkLineInModel(Line l, TwoDModel model){
 	sideView = model.getSideView();
 	return ((checkLineInView(l,frontView)) && (checkLineInView(l,sideView)) && (checkLineInView(l,topView)))
 }
-//! This function returns a list of possible vertices in a array of point objects
+//! This function returns a list of possible edges in a LineList object
+//PointList, LineList, PlaneList classes need to be defined
 Point* ThreeDModelGenerator::PossibleEdgesConstructor(PointList points){
 	int maxSize = points.getSize()*points.getSie();
 	Line possibleEdges[maxSize];
