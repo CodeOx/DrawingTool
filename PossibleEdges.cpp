@@ -1,3 +1,5 @@
+#include "ThreeDModelGenerator.h"
+
 bool checkLineInView(Line l, TwoDView view){
 	Line lines[view.getLineSize()] = view.getLines();
 	for(int i = 0; i < view.getLineSize(); i++){
