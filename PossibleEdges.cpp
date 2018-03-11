@@ -19,7 +19,7 @@ bool checkLineInModel(Line l, TwoDModel model){
 //! This function returns a list of possible edges in a LineList object
 //PointList, LineList, PlaneList classes need to be defined
 Point* ThreeDModelGenerator::PossibleEdgesConstructor(PointList points){
-	int maxSize = points.getSize()*points.getSie();
+	int maxSize = points.getSize()*points.getSize();
 	Line possibleEdges[maxSize];
 	Point pointArray[points.getSize()] = points.getPoints();
 	for(int i = 0; i < points.getSize(); i++){
