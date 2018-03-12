@@ -22,6 +22,7 @@ Point* ThreeDModelGenerator::PossibleEdgesConstructor(PointList points){
 	int maxSize = points.getSize()*points.getSize();
 	Line possibleEdges[maxSize];
 	Point pointArray[points.getSize()] = points.getPoints();
+	int count = 0;
 	for(int i = 0; i < points.getSize(); i++){
 		for(int j = i+1; j < points.getSize(); j++){
 			Line temp;
@@ -29,8 +30,12 @@ Point* ThreeDModelGenerator::PossibleEdgesConstructor(PointList points){
 			temp.setSecondPoint(pointArray[j]);
 			if(checkLineInModel(temp,model)){
 				possibleEdges[i] = temp;
+				count += 1;
 			}
 		}
 	}
-	return LineList(possibleEdges);
+	LineList ob;
+	ob.setLines(possibleEdges);
+	ob.setSize(count);
+	return ob;
 }
