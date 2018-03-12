@@ -51,3 +51,21 @@ void planeList::setplanes(plane* planes){
 void planeList::setSize(int size){
 	this->size = size;
 }
+
+
+
+PlaneWithLines* planeWithLinesList::getPlaneWithLines(){
+	return planeWithLines;
+}
+
+int planeWithLinesList::getSize(){
+	return size;
+}
+
+void planeWithLinesList::setPlaneWithLines(PlaneWithLines* p){
+	this->planeWithLines = p;
+}
+
+void setSize(int size){
+	this->size = size;
+}

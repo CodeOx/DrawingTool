@@ -57,23 +57,39 @@ this.p2 = p2;
 
 
 
-Line Plane::getFirstLine(){
-	return l1;
+float Plane::getA(){
+	return a;
 }
 
-Line Plane::getSecondLine(){
-	return l2;
+float Plane::getB(){
+	return b;
 }
 
-Line* Plane::getArrayLines(){
-	Line ar[2] = {l1,l2};
+float Plane::getC(){
+	return c;
+}
+
+float Plane::getD(){
+	return d;
+}
+
+float* Plane::getArrayABCD(){
+	float ar[4] = {a,b,c,d};
 	return ar;
 }
 
-void Plane::setFirstLine(Line l1){
-this.l1 = l1;
+void Plane::setA(float a){
+	this.a = a;
 }
 
-void Plane::setSecondLine(Line l2){
-this.l2 = l2;
+void Plane::setB(float b){
+	this.b = b;
+}
+
+void Plane::setC(float c){
+	this.c = c;
+}
+
+void Plane::setD(float d){
+	this.d = d;
 }

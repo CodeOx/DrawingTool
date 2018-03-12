@@ -61,20 +61,52 @@ public:
 A class to represent a plane in space
 */
 class Plane{
-	//! two private objects of class line are instantiated to represent the lines of plane
-	Line l1;
-	Line l2;
+	//! eqaution of plane : ax + by + cz + d = 0, therefore a plane can be defined by the coefficients a,b,c,d
+	float a,b,c,d;
 
 public:
-	//! Accessor function to get the first line
-	Line getFirstLine();
-	//! Accessor function to get the second line
-	Line getSecondLine();
+	//! Accessor function to get a
+	float getA();
+	//! Accessor function to get b
+	float getB();
+	//! Accessor function to get c
+	float getC();
+	//! Accessor function to get d
+	float getD();
+	//! Accessor function to get array of lines
+	float* getArrayABCD();
+  
+  	void setA(float a);
+    void setB(float b);
+    void setC(float c);
+    void setD(float d);
+};
+
+#endif
+
+#ifndef PLANEWITHLINES_H
+#define PLANEWITHLINES_H
+
+/*! \class Plane
+A class to represent a plane and the lines lying on it
+*/
+class PlaneWithLines{
+	
+	Plane plane;
+	std::vector<Line> lines;
+	int numLines;
+
+public:
+	//! Accessor function to get plane
+	Plane getPlane();
 	//! Accessor function to get array of lines
 	Line* getArrayLines();
+	//! Accessor function to get number of lines
+	int getNumLines();
   
-  	void setFirstLine(Line l1);
-    void setSecondLine(Line l2);
+  	void setPlane(Plane p);
+  	void addLine(Line l);
+
 };
 
 #endif

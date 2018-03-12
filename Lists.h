@@ -5,9 +5,9 @@ class PointList{
 	int size;
 
 public:
-	void getPoints();
+	Point* getPoints();
 
-	void getSize();
+	int getSize();
 
 	void setPoints(Point* points);
 
@@ -15,13 +15,13 @@ public:
 };
 
 class LineList{
-	line* lines;
+	Line* lines;
 	int size;
 
 public:
-	void getlines();
+	Line* getlines();
 
-	void getSize();
+	int getSize();
 
 	void setlines(line* lines);
 
@@ -29,15 +29,29 @@ public:
 };
 
 class planeList{
-	plane* planes;
+	Plane* planes;
 	int size;
 
 public:
-	void getplanes();
+	Plane* getplanes();
 
-	void getSize();
+	int getSize();
 
 	void setplanes(plane* planes);
+
+	void setSize(int size);
+};
+
+class planeWithLinesList{
+	PlaneWithLines* planeWithLines;
+	int size;
+
+public:
+	PlaneWithLines* getPlaneWithLines();
+
+	int getSize();
+
+	void setPlaneWithLines(PlaneWithLines* p);
 
 	void setSize(int size);
 };

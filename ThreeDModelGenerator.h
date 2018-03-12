@@ -1,4 +1,5 @@
 #include "model.h"
+#include "Lists.h"
 
 #ifndef THREEDMODELGENERATOR_H
 #define THREEDMODELGENERATOR_H
@@ -13,7 +14,7 @@ public:
 	//! This function returns a list of possible vertices in a array of point objects
 	Point* PossibleVerticesConstructor();
 	//! This function returns a list of possible edges in a array of line objects
-	Line* PossibleEdgesConstructor();
+	Line* PossibleEdgesConstructor(PointList points);
 	//! This function returns a list of possible surfaces in a array of plane objects
 	Plane* PossibleSurfacesConstructor();
 	//! This function checks if two given planes are duplicate or not 
