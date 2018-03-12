@@ -13,15 +13,15 @@ float Point::getZ(){
 }
 
 void Point::setX(float x){
-	this.x = x;
+	this->x = x;
 }
 
 void Point::setY(float y){
-	this.y = y;
+	this->y = y;
 }
 
 void Point::setZ(float z){
-	this.z = z;
+	this->z = z;
 }
 
 float* Point::getArrayCoors(){
@@ -29,7 +29,7 @@ float* Point::getArrayCoors(){
 	ar[0] = x;
 	ar[1] = y;
 	ar[2] = z;
-	return ar;
+	return &ar[0];
 }
 
 
@@ -44,15 +44,15 @@ Point Line::getSecondPoint(){
 
 Point* Line::getArrayPoints(){
 	Point ar[2] = {p1,p2};
-	return ar;
+	return &ar[0];
 }
 
 void Line::setFirstPoint(Point p1){
-this.p1 = p1;
+this->p1 = p1;
 }
 
 void Line::setSecondPoint(Point p2){
-this.p2 = p2;
+this->p2 = p2;
 }
 
 
@@ -79,17 +79,39 @@ float* Plane::getArrayABCD(){
 }
 
 void Plane::setA(float a){
-	this.a = a;
+	this->a = a;
 }
 
 void Plane::setB(float b){
-	this.b = b;
+	this->b = b;
 }
 
 void Plane::setC(float c){
-	this.c = c;
+	this->c = c;
 }
 
 void Plane::setD(float d){
-	this.d = d;
+	this->d = d;
+}
+
+
+
+Plane PlaneWithLines::getPlane(){
+	return plane;
+}
+
+Line* PlaneWithLines::getArrayLines(){
+	return &lines[0];
+}
+
+int PlaneWithLines::getNumLines(){
+	return lines.size();
+}
+
+void PlaneWithLines::setPlane(Plane p){
+	this->plane = p;
+}
+
+void PlaneWithLines::addLine(Line l){
+	lines.push_back(l);
 }
