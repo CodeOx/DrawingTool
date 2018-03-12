@@ -7,6 +7,7 @@ bool checkLineInView(Line l, TwoDView view){
 		if((l.getFirstPoint() == viewLine.getFirstPoint() && l.getSecondPoint() == viewLine.getSecondPoint()) || (l.getFirstPoint() == viewLine.getSecondPoint() && l.getSecondPoint() == viewLine.getFirstPoint())){
 			return true;
 		}
+		lines++;
 	}
 	return false;
 }
