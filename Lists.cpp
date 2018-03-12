@@ -1,65 +1,53 @@
-class PointList{
-	Point* points;
-	int size;
+#include "Lists.h"
 
-public:
-	void getPoints(){
-		return points;
-	}
-
-	void getSize(){
-		return size;
-	}
-
-	void setPoints(Point* points){
-		this->points = points;
-	}
-
-	void setSize(int size){
-		this->size = size;
-	}
+void PointList::getPoints(){
+	return points;
 }
 
-class LineList{
-	line* lines;
-	int size;
-
-public:
-	void getlines(){
-		return lines;
-	}
-
-	void getSize(){
-		return size;
-	}
-
-	void setlines(line* lines){
-		this->lines = lines;
-	}
-
-	void setSize(int size){
-		this->size = size;
-	}
+void PointList::getSize(){
+	return size;
 }
 
-class planeList{
-	plane* planes;
-	int size;
+void PointList::setPoints(Point* points){
+	this->points = points;
+}
 
-public:
-	void getplanes(){
-		return planes;
-	}
+void PointList::setSize(int size){
+	this->size = size;
+}
 
-	void getSize(){
-		return size;
-	}
 
-	void setplanes(plane* planes){
-		this->planes = planes;
-	}
 
-	void setSize(int size){
-		this->size = size;
-	}
+void LineList::getlines(){
+	return lines;
+}
+
+void LineList::getSize(){
+	return size;
+}
+
+void LineList::setlines(line* lines){
+	this->lines = lines;
+}
+
+void LineList::setSize(int size){
+	this->size = size;
+}
+
+
+
+void planeList::getplanes(){
+	return planes;
+}
+
+void planeList::getSize(){
+	return size;
+}
+
+void planeList::setplanes(plane* planes){
+	this->planes = planes;
+}
+
+void planeList::setSize(int size){
+	this->size = size;
 }
