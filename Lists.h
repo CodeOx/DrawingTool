@@ -23,7 +23,7 @@ public:
 
 	int getSize();
 
-	void setlines(line* lines);
+	void setlines(Line* lines);
 
 	void setSize(int size);
 };
@@ -37,7 +37,7 @@ public:
 
 	int getSize();
 
-	void setplanes(plane* planes);
+	void setplanes(Plane* planes);
 
 	void setSize(int size);
 };

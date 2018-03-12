@@ -16,7 +16,7 @@ public:
 	//! This function returns a list of possible edges in a array of line objects
 	Line* PossibleEdgesConstructor(PointList points);
 	//! This function returns a list of possible surfaces in a array of plane objects
-	Plane* PossibleSurfacesConstructor();
+	planeWithLinesList PossibleSurfacesConstructor(LineList possibleEdges);
 	//! This function checks if two given planes are duplicate or not 
 	bool DuplicatePlaneChecker(Plane p1, Plane p2);
 	//! This function returns a list of possible closed loops in a array of plane objects
