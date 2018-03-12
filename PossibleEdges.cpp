@@ -56,7 +56,7 @@ Point* ThreeDModelGenerator::PossibleEdgesConstructor(PointList points){
 	if(flag){
 		LineList ob;
 		ob.setLines(possibleEdges);
-		ob.setSize(count);
+		ob.setSize(lineCounter);
 		return ob;
 	}
 
