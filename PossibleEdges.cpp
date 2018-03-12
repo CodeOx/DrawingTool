@@ -3,11 +3,11 @@
 bool checkLineInView(Line l, TwoDView view){
 	Line lines[view.getLineSize()] = view.getLines();
 	for(int i = 0; i < view.getLineSize(); i++){
-		Line viewLine = *lines;
+		Line viewLine = lines[i];
 		if((l.getFirstPoint() == viewLine.getFirstPoint() && l.getSecondPoint() == viewLine.getSecondPoint()) || (l.getFirstPoint() == viewLine.getSecondPoint() && l.getSecondPoint() == viewLine.getFirstPoint())){
 			return true;
 		}
-		lines++;
+		
 	}
 	return false;
 }
