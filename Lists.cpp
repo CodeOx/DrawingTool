@@ -69,3 +69,33 @@ void planeWithLinesList::setPlaneWithLines(PlaneWithLines* p){
 void setSize(int size){
 	this->size = size;
 }
+
+
+
+Plane PlaneWithLines::getPlane(){
+	return plane;
+}
+
+Line* PlaneWithLines::getArrayLines(){
+	return &lines[0];
+}
+
+int PlaneWithLines::getNumLines(){
+	return lines.size();
+}
+
+void PlaneWithLines::setPlane(Plane p){
+	this->plane = p;
+}
+
+void PlaneWithLines::addLine(Line l){
+	lines.push_back(l);
+}
+
+LineList PlaneWithLines::getLines(){
+	LineList l;
+	l.setlines(&lines[0]);
+	l.setSize(lines.size());
+
+	return l;
+}

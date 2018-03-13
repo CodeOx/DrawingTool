@@ -55,3 +55,32 @@ public:
 
 	void setSize(int size);
 };
+
+
+#ifndef PLANEWITHLINES_H
+#define PLANEWITHLINES_H
+
+/*! \class Plane
+A class to represent a plane and the lines lying on it
+*/
+class PlaneWithLines{
+	
+	Plane plane;
+	std::vector<Line> lines;
+	int numLines;
+
+public:
+	//! Accessor function to get plane
+	Plane getPlane();
+	//! Accessor function to get array of lines
+	Line* getArrayLines();
+	//! Accessor function to get number of lines
+	int getNumLines();
+	LineList getLines();
+  
+  	void setPlane(Plane p);
+  	void addLine(Line l);
+
+};
+
+#endif

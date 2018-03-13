@@ -1,3 +1,4 @@
+#include "stdlib.h"
 #include "geometry.h"
 
 float Point::getX(){
@@ -25,11 +26,11 @@ void Point::setZ(float z){
 }
 
 float* Point::getArrayCoors(){
-	float ar[3];
+	float* ar = (float*)malloc (3 * sizeof(float));
 	ar[0] = x;
 	ar[1] = y;
 	ar[2] = z;
-	return &ar[0];
+	return ar;
 }
 
 
@@ -43,8 +44,10 @@ Point Line::getSecondPoint(){
 }
 
 Point* Line::getArrayPoints(){
-	Point ar[2] = {p1,p2};
-	return &ar[0];
+	Point* ar = (Point*)malloc (2 * sizeof(Point));
+	ar[0] = p1;
+	ar[1] = p2;
+	return ar;
 }
 
 void Line::setFirstPoint(Point p1){
@@ -74,7 +77,11 @@ float Plane::getD(){
 }
 
 float* Plane::getArrayABCD(){
-	float ar[4] = {a,b,c,d};
+	float* ar = (float*)malloc (4 * sizeof(float));
+	ar[0] = a;
+	ar[1] = b;
+	ar[2] = c;
+	ar[3] = d;
 	return ar;
 }
 
@@ -92,26 +99,4 @@ void Plane::setC(float c){
 
 void Plane::setD(float d){
 	this->d = d;
-}
-
-
-
-Plane PlaneWithLines::getPlane(){
-	return plane;
-}
-
-Line* PlaneWithLines::getArrayLines(){
-	return &lines[0];
-}
-
-int PlaneWithLines::getNumLines(){
-	return lines.size();
-}
-
-void PlaneWithLines::setPlane(Plane p){
-	this->plane = p;
-}
-
-void PlaneWithLines::addLine(Line l){
-	lines.push_back(l);
 }
