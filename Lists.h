@@ -12,6 +12,8 @@ public:
 	void setPoints(Point* points);
 
 	void setSize(int size);
+	
+	void remove(Line l);
 };
 
 class LineList{
