@@ -116,8 +116,8 @@ LineList PossibleClosedLoopConstructor(PlaneWithLine possiblePlane){
 			//if edge is false edge
 			if(index != -1 && approachedPoints[index] != prevLine.getSecondPoint()){
 				//implement remove function for lineList
-				this->possileEdges.remove(nextLine);
-				ThreeDModelGenerator::PossibleSurfacesConstructor(this->possileEdges);
+				this->possibleEdges.remove(nextLine);
+				ThreeDModelGenerator::PossibleSurfacesConstructor(this->possibleEdges);
 			}
 			else{
 				if(checkEqualLines(nextLine,firstLine)){
