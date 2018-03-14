@@ -13,7 +13,6 @@ public:
 
 	void setSize(int size);
 	
-	void remove(Line l);
 };
 
 class LineList{
@@ -28,6 +27,8 @@ public:
 	void setlines(Line* lines);
 
 	void setSize(int size);
+	
+	void remove(Line l);
 };
 
 class planeList{
