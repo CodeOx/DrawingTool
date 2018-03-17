@@ -18,7 +18,7 @@ void PointList::setSize(int size){
 
 
 
-void LineList::getlines(){
+void LineList::getLines(){
 	return lines;
 }
 

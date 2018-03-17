@@ -1,8 +1,9 @@
 #include<cmath>
+#include "ThreeDModelGenerator.h"
 
 float angleBtwLines(Line l1, Line l2){
 	float firstX, firstY, firstZ;
-	float secondX, secondY, secondZ; 
+	float secondX, secondY, secondZ, cos_theta; 
 	float dotProduct;
 	float firstMag;
 	float secondMag;
@@ -66,7 +67,8 @@ int memberIndex(Line l, Line* lines, int count){
 }
 
 LineList getLinesAtPoint(Point p, LineList l){
-	Line lines[l.getSize()] = l.getLines();
+	Line* lines;
+	lines = l.getLines();
 	Line resLines[l.getSize()];
 	int count = 0;
 	for(int i = 0; i < l.getSize(); i++){
@@ -95,7 +97,8 @@ Line getMinLine(Line l, LineList list){
 	}
 	return minLine;
 }
-LineList PossibleClosedLoopConstructor(PlaneWithLine possiblePlane){
+
+void ThreeDModelGenerator::PossibleClosedLoopConstructor(PlaneWithLines possiblePlane){
 	//initial line
 	Line firstLine = *possiblePlane.getArrayLines(); 
 	Line prevLine = *possiblePlane.getArrayLines(); 
@@ -114,7 +117,7 @@ LineList PossibleClosedLoopConstructor(PlaneWithLine possiblePlane){
 			//index represents the index where the line is found
 			int index = memberIndex(nextLine, loopLines, i);
 			//if edge is false edge
-			if(index != -1 && approachedPoints[index] != prevLine.getSecondPoint()){
+			if(index != -1 && checkEqualPoints(approachedPoints[index],prevLine.getSecondPoint())){
 				//implement remove function for lineList
 				this->possibleEdges.remove(nextLine);
 				ThreeDModelGenerator::PossibleSurfacesConstructor(this->possibleEdges);
@@ -133,4 +136,15 @@ LineList PossibleClosedLoopConstructor(PlaneWithLine possiblePlane){
 		}
 		
 	}
+}
+
+void ThreeDModelGenerator::PossibleClosedLoopFacesConstructor(planeWithLinesList possibleSurfaces){
+	int size = possibleSurfaces.getSize();
+	PlaneWithLines* surfaces;
+	surfaces = possibleSurfaces.getPlaneWithLines();
+	for(int i = 0; i < size; i++){
+		PossibleClosedLoopConstructor(*surfaces);
+		surfaces++;
+	}
+
 }

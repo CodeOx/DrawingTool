@@ -1,5 +1,8 @@
 #include "geometry.h"
 
+#ifndef POINTLIST_H
+#define POINTLIST_H
+
 class PointList{
 	Point* points;
 	int size;
@@ -14,22 +17,30 @@ public:
 	void setSize(int size);
 	
 };
+#endif
+
+#ifndef LINELIST_H
+#define LINELIST_H
 
 class LineList{
 	Line* lines;
 	int size;
 
 public:
-	Line* getlines();
+	Line* getLines();
 
 	int getSize();
 
-	void setlines(Line* lines);
+	void setLines(Line* lines);
 
 	void setSize(int size);
 	
 	void remove(Line l);
 };
+#endif
+
+#ifndef PLANELIST_H
+#define PLANELIST_H
 
 class planeList{
 	Plane* planes;
@@ -44,21 +55,7 @@ public:
 
 	void setSize(int size);
 };
-
-class planeWithLinesList{
-	PlaneWithLines* planeWithLines;
-	int size;
-
-public:
-	PlaneWithLines* getPlaneWithLines();
-
-	int getSize();
-
-	void setPlaneWithLines(PlaneWithLines* p);
-
-	void setSize(int size);
-};
-
+#endif
 
 #ifndef PLANEWITHLINES_H
 #define PLANEWITHLINES_H
@@ -84,6 +81,20 @@ public:
   	void setPlane(Plane p);
   	void addLine(Line l);
 
+};
+
+class planeWithLinesList{
+	PlaneWithLines* planeWithLines;
+	int size;
+
+public:
+	PlaneWithLines* getPlaneWithLines();
+
+	int getSize();
+
+	void setPlaneWithLines(PlaneWithLines* p);
+
+	void setSize(int size);
 };
 
 #endif
