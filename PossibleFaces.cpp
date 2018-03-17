@@ -55,6 +55,16 @@ bool member(Line l, Line* lines, int count){
 	}
 	return false;
 }
+
+int memberIndex(Line l, Line* lines, int count){
+	for(int i = 0; i < count; i++){
+		if(checkEqualLines(lines[i],l)){
+			return i;
+		}
+	}
+	return -1;
+}
+
 LineList getLinesAtPoint(Point p, LineList l){
 	Line lines[l.getSize()] = l.getLines();
 	Line resLines[l.getSize()];
@@ -85,11 +95,42 @@ Line getMinLine(Line l, LineList list){
 	}
 	return minLine;
 }
-LineList PossibleClosedLoopFacesConstructor(PlaneWithLine possiblePlane){
-	Line prevLine = *possiblePlane.getArrayLines();
+LineList PossibleClosedLoopConstructor(PlaneWithLine possiblePlane){
+	//initial line
+	Line firstLine = *possiblePlane.getArrayLines(); 
+	Line prevLine = *possiblePlane.getArrayLines(); 
+	//Array of loop lines
+	Line loopLines[possiblePlane.getNumLines()];
+	//Array of approached points of each line
+	Point approachedPoints[possiblePlane.getNumLines()];
+	int loopLinesLen = 0;
 	for(int i = 0; i < possiblePlane.getNumLines(); i++){
-		LineList temp = getLinesAtPoint(prevLine.getSecondPoint(),possiblePlane.getArrayLines());
+		LineList l;
+		l.setLines(possiblePlane.getArrayLines());
+		l.setSize(possiblePlane.getNumLines());
+		LineList temp = getLinesAtPoint(prevLine.getSecondPoint(),l);
 		Line nextLine = getMinLine(prevLine, temp);
-		//-------------incomplete---------------------------
+		if(member(nextLine, loopLines, i)){
+			//index represents the index where the line is found
+			int index = memberIndex(nextLine, loopLines, i);
+			//if edge is false edge
+			if(index != -1 && approachedPoints[index] != prevLine.getSecondPoint()){
+				//implement remove function for lineList
+				this->possibleEdges.remove(nextLine);
+				ThreeDModelGenerator::PossibleSurfacesConstructor(this->possibleEdges);
+			}
+			else{
+				if(checkEqualLines(nextLine,firstLine)){
+					break;
+				}
+			}
+		}
+		else{
+			//update the parameters
+			loopLines[loopLinesLen] = nextLine;
+			loopLinesLen++;
+			prevLine = nextLine;
+		}
+		
 	}
 }
