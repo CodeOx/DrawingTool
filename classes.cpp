@@ -2,7 +2,8 @@
 #include <set>
 #include <iterator>
 #include "ThreeDModelGenerator.h"
- 
+#include "TwoDModelGenerator.h" 
+
 using namespace std;
 
 class StartScreen
