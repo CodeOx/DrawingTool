@@ -9,11 +9,11 @@ Line* TwoDView::getLines(){
 }
 
 void TwoDView::setPoints(Point* p){
-	this.points = p;
+	this->points = p;
 }
 
 void TwoDView::setLines(Line* l){
-	this.lines = l;
+	this->lines = l;
 }
 
 int TwoDView::getPointSize(){
@@ -25,9 +25,9 @@ int TwoDView::getLineSize(){
 }
 
 void TwoDView::setPointSize(int s){
-	this.pointSize += s;
+	this->pointSize += s;
 }
 
 void TwoDView::setLineSize(int s){
-	this.lineSize += s;
+	this->lineSize += s;
 }

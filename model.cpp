@@ -13,15 +13,15 @@ TwoDView TwoDModel::getSideView(){
 }
 
 void TwoDModel::setFrontView(TwoDView v){
-	this.frontView = v;
+	this->frontView = v;
 }
 
 void TwoDModel::setTopView(TwoDView v){
-	this.topView = v;
+	this->topView = v;
 }
 
 void TwoDModel::setSideView(TwoDView v){
-	this.sideView = v;
+	this->sideView = v;
 }
 
 
@@ -33,20 +33,20 @@ Line* ThreeDModel::getLines(){
 	return lines;
 }
 
-Planes* ThreeDModel::getPlanes(){
+Plane* ThreeDModel::getPlanes(){
 	return planes;
 }
 
 void ThreeDModel::setPoints(Point* p){
-	this.points = p;
+	this->points = p;
 }
 
 void ThreeDModel::setLines(Line* l){
-	this.lines = l;
+	this->lines = l;
 }
 
 void ThreeDModel::setPlanes(Plane* p){
-	this.planes = p;
+	this->planes = p;
 }
 
 int ThreeDModel::getPointSize(){
@@ -62,13 +62,13 @@ int ThreeDModel::getPlaneSize(){
 }
 
 void ThreeDModel::setPointSize(int s){
-	this.pointSize += s;
+	this->pointSize += s;
 }
 
 void ThreeDModel::setLineSize(int s){
-	this.lineSize += s;
+	this->lineSize += s;
 }
 
 void ThreeDModel::setPlaneSize(int s){
-	this.planeSize += s;
+	this->planeSize += s;
 }

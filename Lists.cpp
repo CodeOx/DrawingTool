@@ -1,10 +1,10 @@
 #include "Lists.h"
 
-void PointList::getPoints(){
+Point* PointList::getPoints(){
 	return points;
 }
 
-void PointList::getSize(){
+int PointList::getSize(){
 	return size;
 }
 
@@ -18,15 +18,15 @@ void PointList::setSize(int size){
 
 
 
-void LineList::getLines(){
+Line* LineList::getLines(){
 	return lines;
 }
 
-void LineList::getSize(){
+int LineList::getSize(){
 	return size;
 }
 
-void LineList::setlines(line* lines){
+void LineList::setLines(Line* lines){
 	this->lines = lines;
 }
 
@@ -36,15 +36,15 @@ void LineList::setSize(int size){
 
 
 
-void planeList::getplanes(){
+Plane* planeList::getplanes(){
 	return planes;
 }
 
-void planeList::getSize(){
+int planeList::getSize(){
 	return size;
 }
 
-void planeList::setplanes(plane* planes){
+void planeList::setplanes(Plane* planes){
 	this->planes = planes;
 }
 
@@ -65,11 +65,6 @@ int planeWithLinesList::getSize(){
 void planeWithLinesList::setPlaneWithLines(PlaneWithLines* p){
 	this->planeWithLines = p;
 }
-
-void setSize(int size){
-	this->size = size;
-}
-
 
 
 Plane PlaneWithLines::getPlane(){
@@ -94,7 +89,7 @@ void PlaneWithLines::addLine(Line l){
 
 LineList PlaneWithLines::getLines(){
 	LineList l;
-	l.setlines(&lines[0]);
+	l.setLines(&lines[0]);
 	l.setSize(lines.size());
 
 	return l;
