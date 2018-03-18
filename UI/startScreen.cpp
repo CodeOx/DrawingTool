@@ -1,5 +1,4 @@
 #include "startScreen.h"
-#include <fileDialog.h>
 
 startScreen::startScreen(QWidget *parent) :
 	QWidget(parent)
@@ -14,15 +13,21 @@ startScreen::startScreen(QWidget *parent) :
 		button2 = new QPushButton("3D to 2D conversion", this);	
 		button2->setGeometry(500, 75, 200, 150);
 
+		test = new QFileDialogTester();
+
 		connect(button1, SIGNAL (clicked(bool)), this, SLOT (button1Clicked(bool)));
+		connect(test, SIGNAL (fileOpened()), this, SLOT (fileOpen()));
 	}
 
 void startScreen::button1Clicked(bool checked)
 {
-	QFileDialogTester test;
- 	filename = test.openFile();
+ 	filename = test->openFile();
 }
 
-char* startScreen::getFilename(){
-	return filename;
+void startScreen::fileOpen()
+{	
+	//perform file parsing here
+	//view.setThreeDModel(model);
+	view.drawOutput();
+	view.show();
 }

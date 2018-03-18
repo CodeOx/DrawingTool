@@ -3,17 +3,21 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <myqgraphicsview.h>
+#include "fileDialog.h"
 
 class startScreen : public QWidget
 {
  Q_OBJECT
  public:
   explicit startScreen(QWidget *parent = 0);
-  char* getFilename();
  private slots:
-   void button1Clicked(bool checked);
+	void button1Clicked(bool checked);
+ 	void fileOpen();
  private:
   QPushButton *button1,*button2;
+  QFileDialogTester *test;
+  MyQGraphicsView view;
   char* filename;
 
  signals:

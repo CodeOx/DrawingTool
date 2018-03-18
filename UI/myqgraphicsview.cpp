@@ -18,40 +18,14 @@ MyQGraphicsView::MyQGraphicsView(QWidget *parent) : QGraphicsView(parent), count
 	color = qRgb(0, 0, 0);
 }
 
-void MyQGraphicsView::mouseReleaseEvent(QMouseEvent *event)
+void MyQGraphicsView::drawOutput()
 {
-	switch(event->button())
-	{
-		case Qt::LeftButton:
-			/*count++;
+	p1 = QPoint (100.0, 100.0);
+	p2 = QPoint (100.0, 200.0);
 
-			if(1 == count)
-			{
-				p1 = mapToScene(event->pos());
-			}
-			else if(2 == count)
-			{
-				p2 = mapToScene(event->pos());
-				p2 = QPoint (10.0, 20.0);
-				drawLine();
-				reset();
-				scene->addPixmap(QPixmap::fromImage(img));
-			}
-
-			break;*/
-
-			p1 = QPoint (100.0, 100.0);
-			p2 = QPoint (100.0, 200.0);
-
-			drawLine();
-			//reset();
-			scene->addPixmap(QPixmap::fromImage(img));
-			break;
-
-		default:
-			reset();
-			img.fill(Qt::white);
-	}
+	drawLine();
+	//reset();
+	scene->addPixmap(QPixmap::fromImage(img));
 }
 
 void MyQGraphicsView::drawLine()
@@ -132,4 +106,8 @@ void MyQGraphicsView::reset()
 	count = 0;
 	scene->clear();
 	p1 = p2 = QPoint(0, 0);
+}
+
+void MyQGraphicsView::setTwoDModel(TwoDModel model){
+	this->model = model;
 }

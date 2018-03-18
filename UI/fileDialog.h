@@ -6,8 +6,11 @@
 
 class QFileDialogTester : public QWidget
 {
-public:
-  char* openFile();
+	Q_OBJECT
+	public:
+  		char* openFile();
+  	signals:
+ 		void fileOpened();
 };
 
 #endif
