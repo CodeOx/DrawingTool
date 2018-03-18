@@ -53,14 +53,20 @@ TwoDModel TwoDModelGenerator::output(){
 	TwoDView xy;
 	xy.setPoints(_3Dto2DPoints(model.getPoints(),"xy",pointSize));
 	xy.setLines(_3Dto2DLine(model.getLines(),"xy",lineSize));
+	xy.setPointSize(pointSize);
+	xy.setLineSize(lineSize);
 
 	TwoDView yz;
-	xy.setPoints(_3Dto2DPoints(model.getPoints(),"yz",pointSize));
-	xy.setLines(_3Dto2DLine(model.getLines(),"yz",lineSize));
+	yz.setPoints(_3Dto2DPoints(model.getPoints(),"yz",pointSize));
+	yz.setLines(_3Dto2DLine(model.getLines(),"yz",lineSize));
+	yz.setPointSize(pointSize);
+	yz.setLineSize(lineSize);
 
 	TwoDView zx;
-	xy.setPoints(_3Dto2DPoints(model.getPoints(),"zx",pointSize));
-	xy.setLines(_3Dto2DLine(model.getLines(),"zx",lineSize));
+	zx.setPoints(_3Dto2DPoints(model.getPoints(),"zx",pointSize));
+	zx.setLines(_3Dto2DLine(model.getLines(),"zx",lineSize));
+	zx.setPointSize(pointSize);
+	zx.setLineSize(lineSize);
 
 	TwoDModel output;
 	output.setFrontView(xy);
