@@ -13,7 +13,8 @@ class startScreen : public QWidget
   explicit startScreen(QWidget *parent = 0);
  private slots:
 	void button1Clicked(bool checked);
- 	void fileOpen();
+	void button2Clicked(bool checked);
+ 	void fileOpened();
  private:
   QPushButton *button1,*button2;
   QFileDialogTester *test;

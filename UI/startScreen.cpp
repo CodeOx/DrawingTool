@@ -24,10 +24,15 @@ void startScreen::button1Clicked(bool checked)
  	filename = test->openFile();
 }
 
-void startScreen::fileOpen()
+void startScreen::button2Clicked(bool checked)
+{
+ 	filename = test->openFile();
+}
+
+void startScreen::fileOpened()
 {	
 	//perform file parsing here
 	//view.setThreeDModel(model);
-	view.drawOutput();
+	view.drawOutput2D();
 	view.show();
 }

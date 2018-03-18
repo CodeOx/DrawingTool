@@ -12,7 +12,7 @@ public:
 
 public slots:
     //void mouseReleaseEvent(QMouseEvent *event);
-    void drawOutput();
+    void drawOutput2D();
     void drawLine();
     void reset();
     void setTwoDModel(TwoDModel model);
@@ -22,7 +22,7 @@ private:
     QImage img;
     QGraphicsScene *scene;
     QPointF p1, p2;
-    TwoDModel model;
+    TwoDModel model2D;
 
     QRgb color;
 };

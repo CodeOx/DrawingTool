@@ -11,6 +11,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = qt-line
 TEMPLATE = app
 
+INCLUDEPATH += "C:\Users\HP\Documents\iit_acad\cop290\DrawingTool"
+
+LIBS += "C:\Users\HP\Documents\iit_acad\cop290\DrawingTool\*.o"
 
 SOURCES += main.cpp\
     myqgraphicsview.cpp\
