@@ -1,22 +1,15 @@
+#include <iostream>
 #include <fstream>
+#include<sstream>
 #include <string>
 #include <vector>
 #include "model.h"
 
-void fileParser(string filename, int choice){
-	if(choice == 1){
-		_2DModelInput(filename);
-	}
-	else{
-		_3DModelInput(filename);
-	}
-}
-
-ThreeDModel _3DModelInput(string filename){
-	ifstream infile;
+ThreeDModel _3DModelInput(std::string filename){
+	std::ifstream infile;
 	infile.open(filename);
 	if(!infile){
-		cout << "Unable to open file";
+		std::cout << "Unable to open file";
 	}
 	std::string line;
 	bool pointsFlag = false;
@@ -34,7 +27,7 @@ ThreeDModel _3DModelInput(string filename){
 
 	while(std::getline(infile,line)){
 		if(line.compare(points)!= 0){
-			lineFlags = false;
+			linesFlag = false;
 			pointsFlag = true;
 		}
 		
@@ -43,11 +36,12 @@ ThreeDModel _3DModelInput(string filename){
 			pointsFlag = false;
 		}
 
-		std::isstringstream iss(line);
+		std::istringstream iss(line);
 
-		int x,y,z;
-		
-		if(pointsFlag && line >> x >> y >> z){
+		float x,y,z;
+		float x1,y1,z1,x2,y2,z2;
+
+		if(pointsFlag && iss >> x >> y >> z){
 			Point p;
 			p.setX(x);
 			p.setY(y);
@@ -56,7 +50,7 @@ ThreeDModel _3DModelInput(string filename){
 			pointCounter++;
 		}
 
-		if(linesFlag && line >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
+		if(linesFlag && iss >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
 			Point firstPoint;
 			Point secondPoint;
 			Line line;
@@ -70,7 +64,7 @@ ThreeDModel _3DModelInput(string filename){
 			line.setSecondPoint(secondPoint);
 			lineArray[lineCounter] = line;
 		}
-		iss.close();
+		//iss.close();
 
 	}
 	model.setPoints(pointArray);
@@ -81,11 +75,11 @@ ThreeDModel _3DModelInput(string filename){
 	return model;
 }
 
-TwoDModel _2DModelInput(string filename){
-	ifstream infile;
+TwoDModel _2DModelInput(std::string filename){
+	std::ifstream infile;
 	infile.open(filename);
 	if(!infile){
-		cout << "Unable to open file";
+		std::cout << "Unable to open file";
 	}
 	std::string line;
 	bool pointsFlag = false;
@@ -95,9 +89,9 @@ TwoDModel _2DModelInput(string filename){
 	bool side = false;
 	std::string points ("Points");
 	std::string lines ("Lines");
-	std::string frontView ("FrontView");
-	std::string sideView ("SideView");
-	std::string topView ("TopView");
+	std::string frontViewString ("FrontView");
+	std::string sideViewString ("SideView");
+	std::string topViewString ("TopView");
 	TwoDModel model;
 	TwoDView frontView;
 	TwoDView topView;
@@ -118,7 +112,7 @@ TwoDModel _2DModelInput(string filename){
 	while(std::getline(infile,line)){
 
 		if(line.compare(points) != 0){
-			lineFlags = false;
+			linesFlag = false;
 			pointsFlag = true;
 		}
 		
@@ -127,29 +121,30 @@ TwoDModel _2DModelInput(string filename){
 			pointsFlag = false;
 		}
 
-		if(line.compare(frontView)){
+		if(line.compare(frontViewString)){
 			front = true;
 			top = false;
 			side = false;
 		}
 
-		if(line.compare(topView)){
+		if(line.compare(topViewString)){
 			front = false;
 			top = true;
 			side = false;
 		}
 
-		if(line.compare(sideView)){
+		if(line.compare(sideViewString)){
 			front = false;
 			top = false;
 			side = true;
 		}
 
-		std::isstringstream iss(line);
+		std::istringstream iss(line);
 
-		int x,y,z;
+		float x,y,z;
+		float x1,y1,z1,x2,y2,z2;
 		
-		if(pointsFlag && front && line >> x >> y >> z){
+		if(pointsFlag && front && iss >> x >> y >> z){
 			Point p;
 			p.setX(x);
 			p.setY(y);
@@ -158,7 +153,7 @@ TwoDModel _2DModelInput(string filename){
 			frontPointCounter++;
 		}
 
-		if(pointsFlag && top && line >> x >> y >> z){
+		if(pointsFlag && top && iss >> x >> y >> z){
 			Point p;
 			p.setX(x);
 			p.setY(y);
@@ -167,16 +162,16 @@ TwoDModel _2DModelInput(string filename){
 			topPointCounter++;
 		}
 
-		if(pointsFlag && side && line >> x >> y >> z){
+		if(pointsFlag && side && iss >> x >> y >> z){
 			Point p;
 			p.setX(x);
 			p.setY(y);
 			p.setZ(z);
-			sidePointArray[pointCounter] = p;
+			sidePointArray[sidePointCounter] = p;
 			sidePointCounter++;
 		}
 
-		if(linesFlag && front && line >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
+		if(linesFlag && front && iss >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
 			Point firstPoint;
 			Point secondPoint;
 			Line line;
@@ -191,7 +186,7 @@ TwoDModel _2DModelInput(string filename){
 			frontLineArray[frontLineCounter] = line;
 		}
 
-		if(linesFlag && top && line >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
+		if(linesFlag && top && iss >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
 			Point firstPoint;
 			Point secondPoint;
 			Line line;
@@ -206,7 +201,7 @@ TwoDModel _2DModelInput(string filename){
 			topLineArray[topLineCounter] = line;
 		}
 
-		if(linesFlag && side && line >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
+		if(linesFlag && side && iss >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
 			Point firstPoint;
 			Point secondPoint;
 			Line line;
@@ -221,33 +216,39 @@ TwoDModel _2DModelInput(string filename){
 			sideLineArray[sideLineCounter] = line;
 		}
 
-		iss.close();
+		//iss.close();
 
 	}
 
 	frontView.setPoints(frontPointArray);
 	frontView.setLines(frontLineArray);
 	frontView.setPointSize(frontPointCounter);
-	frontView.setLineSize(frontlineCounter);
+	frontView.setLineSize(frontLineCounter);
 
 	sideView.setPoints(sidePointArray);
 	sideView.setLines(sideLineArray);
 	sideView.setPointSize(sidePointCounter);
-	sideView.setLineSize(sidelineCounter);
+	sideView.setLineSize(sideLineCounter);
 
 	topView.setPoints(topPointArray);
 	topView.setLines(topLineArray);
 	topView.setPointSize(topPointCounter);
-	topView.setLineSize(toplineCounter);
+	topView.setLineSize(topLineCounter);
 
 	model.setFrontView(frontView);
 	model.setTopView(topView);
-	model.setSideView(SideView);
+	model.setSideView(sideView);
 
 
 	infile.close();
 	return model;
+}
 
-
-
-
+void fileParser(std::string filename, int choice){
+	if(choice == 1){
+		_2DModelInput(filename);
+	}
+	else{
+		_3DModelInput(filename);
+	}
+}
