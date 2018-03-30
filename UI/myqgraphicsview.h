@@ -15,14 +15,14 @@ public slots:
     void drawOutput2D();
     void drawLine();
     void reset();
-    void setTwoDModel(TwoDModel model);
+    void setp1(float x, float y);
+    void setp2(float x, float y);
 
 private:
     short int count;
     QImage img;
     QGraphicsScene *scene;
     QPointF p1, p2;
-    TwoDModel model2D;
 
     QRgb color;
 };

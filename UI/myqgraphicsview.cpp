@@ -18,18 +18,17 @@ MyQGraphicsView::MyQGraphicsView(QWidget *parent) : QGraphicsView(parent), count
 	color = qRgb(0, 0, 0);
 }
 
+void MyQGraphicsView::setp1(float x, float y){
+	p1 = QPoint(x,y);
+}
+
+void MyQGraphicsView::setp2(float x, float y){
+	p2 = QPoint(x,y);
+}
+
 void MyQGraphicsView::drawOutput2D()
 {
-
-	TwoDView frontView = model2D.getFrontView();
-	TwoDView topView = model2D.getTopView();
-	TwoDView sideView = model2D.getSideView();
-
-	p1 = QPoint (100.0, 100.0);
-	p2 = QPoint (100.0, 200.0);
-
 	drawLine();
-	//reset();
 	scene->addPixmap(QPixmap::fromImage(img));
 }
 
@@ -111,8 +110,4 @@ void MyQGraphicsView::reset()
 	count = 0;
 	scene->clear();
 	p1 = p2 = QPoint(0, 0);
-}
-
-void MyQGraphicsView::setTwoDModel(TwoDModel model){
-	this->model2D = model;
 }
