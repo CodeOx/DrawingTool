@@ -132,11 +132,15 @@ void twoDModelOutputTool::normalise(){
 }
 
 void twoDModelOutputTool::drawModel(){
+
+	translateOrigin();
+	normalise();
+
 	//drawing front view only
 	Line* frontViewLines = frontView.getLines();
 	for (int i = 0; i < frontView.getLineSize(); i++){
 		Point p1 = frontViewLines -> getFirstPoint();
-		Point p2 = frontViewLines -> getSecontPoint();
+		Point p2 = frontViewLines -> getSecondPoint();
 
 		view -> setp1((p1.getX() - originShiftAmountFrontView.getX())/scaleAmountFrontView, (p1.getY() - originShiftAmountFrontView.getY())/scaleAmountFrontView);
 		view -> setp2((p2.getY() - originShiftAmountFrontView.getY())/scaleAmountFrontView, (p2.getY() - originShiftAmountFrontView.getY())/scaleAmountFrontView);
@@ -145,4 +149,6 @@ void twoDModelOutputTool::drawModel(){
 
 		frontViewLines++;
 	}
+	
+	view -> show();
 }

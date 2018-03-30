@@ -1,7 +1,7 @@
 #ifndef TWODMODELOUTPUTTOOL_H
 #define TWODMODELOUTPUTTOOL_H
 
-#include <myqgraphicsview.h>
+#include "myqgraphicsview.h"
 #include "../model.h"
 
 class twoDModelOutputTool
@@ -20,9 +20,9 @@ class twoDModelOutputTool
 	float scaleAmountSideView;
 	void translateOrigin();
 	void normalise();
-	void drawModel();
 public:
 	twoDModelOutputTool(TwoDModel model, MyQGraphicsView* view);
+	void drawModel();
 };
 
 #endif

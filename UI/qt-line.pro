@@ -20,9 +20,11 @@ SOURCES += main.cpp\
     myqgraphicsview.cpp\
     fileDialog.cpp\
     startScreen.cpp\
-    fileParser.cpp
+    fileParser.cpp\
+    twoDModelOutputTool.cpp
 
 HEADERS  += myqgraphicsview.h\
 			fileDialog.h\
 			startScreen.h\
-			fileParser.h
+			fileParser.h\
+			twoDModelOutputTool.h
