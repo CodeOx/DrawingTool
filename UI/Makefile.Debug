@@ -228,7 +228,7 @@ debug/moc_fileDialog.cpp: C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QFileDi
 		fileDialog.h \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	'C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\moc.exe' $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/Users/HP/Documents/iit_acad/cop290/DrawingTool/UI -IC:/Users/HP/Documents/iit_acad/cop290/DrawingTool -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtOpenGL -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++ -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++/mingw32 -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++/backward -Ic:/mingw/lib/gcc/mingw32/6.3.0/include -Ic:/mingw/include -Ic:/mingw/lib/gcc/mingw32/6.3.0/include-fixed fileDialog.h -o debug/moc_fileDialog.cpp
+	'C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\moc.exe' $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/Users/HP/Documents/iit_acad/cop290/DrawingTool/ui -IC:/Users/HP/Documents/iit_acad/cop290/DrawingTool -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtOpenGL -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++ -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++/mingw32 -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++/backward -Ic:/mingw/lib/gcc/mingw32/6.3.0/include -Ic:/mingw/include -Ic:/mingw/lib/gcc/mingw32/6.3.0/include-fixed fileDialog.h -o debug/moc_fileDialog.cpp
 
 debug/moc_startScreen.cpp: C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qwidget.h \
@@ -359,7 +359,7 @@ debug/moc_startScreen.cpp: C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QWidge
 		startScreen.h \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
-	'C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\moc.exe' $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/Users/HP/Documents/iit_acad/cop290/DrawingTool/UI -IC:/Users/HP/Documents/iit_acad/cop290/DrawingTool -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtOpenGL -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++ -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++/mingw32 -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++/backward -Ic:/mingw/lib/gcc/mingw32/6.3.0/include -Ic:/mingw/include -Ic:/mingw/lib/gcc/mingw32/6.3.0/include-fixed startScreen.h -o debug/moc_startScreen.cpp
+	'C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\moc.exe' $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++ -IC:/Users/HP/Documents/iit_acad/cop290/DrawingTool/ui -IC:/Users/HP/Documents/iit_acad/cop290/DrawingTool -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtOpenGL -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++ -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++/mingw32 -Ic:/mingw/lib/gcc/mingw32/6.3.0/include/c++/backward -Ic:/mingw/lib/gcc/mingw32/6.3.0/include -Ic:/mingw/include -Ic:/mingw/lib/gcc/mingw32/6.3.0/include-fixed startScreen.h -o debug/moc_startScreen.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -607,18 +607,20 @@ debug/myqgraphicsview.o: myqgraphicsview.cpp C:/Qt/Qt5.8.0/5.8/mingw53_32/includ
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpolygon.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qline.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpainterpath.h \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QGraphicsScene \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qgraphicsscene.h \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgets-config.h \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpixmap.h \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qfont.h \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
 		myqgraphicsview.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QGraphicsView \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qgraphicsview.h \
-		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
-		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtwidgets-config.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpainter.h \
-		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpixmap.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qbrush.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qfontinfo.h \
-		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qfont.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qfontmetrics.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qscrollarea.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
@@ -627,7 +629,6 @@ debug/myqgraphicsview.o: myqgraphicsview.cpp C:/Qt/Qt5.8.0/5.8/mingw53_32/includ
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qpalette.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qsizepolicy.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qcursor.h \
-		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qgraphicsscene.h \
 		../TwoDModelGenerator.h \
 		../model.h \
 		../view.h \

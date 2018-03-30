@@ -143,9 +143,9 @@ void twoDModelOutputTool::drawModel(){
 		Point p2 = frontViewLines -> getSecondPoint();
 
 		float p1NormalisedX = ((p1.getX() - originShiftAmountFrontView.getX())*scaleAmountFrontView) + 50.0;
-		float p1NormalisedY = ((p1.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 50.0;
-		float p2NormalisedX = ((p2.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 50.0;
-		float p2NormalisedY = ((p2.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 50.0;
+		float p1NormalisedY = ((p1.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 150.0;
+		float p2NormalisedX = ((p2.getX() - originShiftAmountFrontView.getX())*scaleAmountFrontView) + 50.0;
+		float p2NormalisedY = ((p2.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 150.0;
 
 		view -> setp1(p1NormalisedX, p1NormalisedY);
 		view -> setp2(p2NormalisedX, p2NormalisedY);
@@ -154,6 +154,44 @@ void twoDModelOutputTool::drawModel(){
 
 		frontViewLines++;
 	}
-	
+
+	//drawing front view
+	Line* topViewLines = topView.getLines();
+	for (int i = 0; i < topView.getLineSize(); i++){
+		Point p1 = topViewLines -> getFirstPoint();
+		Point p2 = topViewLines -> getSecondPoint();
+
+		float p1NormalisedX = ((p1.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 350.0;
+		float p1NormalisedY = ((p1.getZ() - originShiftAmountFrontView.getZ())*scaleAmountFrontView) + 150.0;
+		float p2NormalisedX = ((p2.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 350.0;
+		float p2NormalisedY = ((p2.getZ() - originShiftAmountFrontView.getZ())*scaleAmountFrontView) + 150.0;
+
+		view -> setp1(p1NormalisedX, p1NormalisedY);
+		view -> setp2(p2NormalisedX, p2NormalisedY);
+
+		view -> drawOutput2D();
+
+		topViewLines++;
+	}
+
+	//drawing side view
+	Line* sideViewLines = sideView.getLines();
+	for (int i = 0; i < sideView.getLineSize(); i++){
+		Point p1 = sideViewLines -> getFirstPoint();
+		Point p2 = sideViewLines -> getSecondPoint();
+
+		float p1NormalisedX = ((p1.getZ() - originShiftAmountFrontView.getZ())*scaleAmountFrontView) + 650.0;
+		float p1NormalisedY = ((p1.getX() - originShiftAmountFrontView.getX())*scaleAmountFrontView) + 150.0;
+		float p2NormalisedX = ((p2.getZ() - originShiftAmountFrontView.getZ())*scaleAmountFrontView) + 650.0;
+		float p2NormalisedY = ((p2.getX() - originShiftAmountFrontView.getX())*scaleAmountFrontView) + 150.0;
+
+		view -> setp1(p1NormalisedX, p1NormalisedY);
+		view -> setp2(p2NormalisedX, p2NormalisedY);
+
+		view -> drawOutput2D();
+
+		sideViewLines++;
+	}
+
 	view -> show();
 }

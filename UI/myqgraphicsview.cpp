@@ -2,12 +2,13 @@
 #include <QMouseEvent>
 #include <QImage>
 #include <cmath>
+#include <QGraphicsTextItem>
 
 #include "myqgraphicsview.h"
 
-MyQGraphicsView::MyQGraphicsView(QWidget *parent) : QGraphicsView(parent), count(0), img(1000, 800, QImage::Format_ARGB32)
+MyQGraphicsView::MyQGraphicsView(QWidget *parent) : QGraphicsView(parent), count(0), img(900, 400, QImage::Format_ARGB32)
 {
-	setFixedSize(1000, 800);
+	setFixedSize(900, 400);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -16,6 +17,15 @@ MyQGraphicsView::MyQGraphicsView(QWidget *parent) : QGraphicsView(parent), count
 	setSceneRect(0, 0, this->width(), this->height());
 
 	color = qRgb(0, 0, 0);
+
+	QGraphicsTextItem *text1 = scene->addText("Front View");
+	text1->setPos(50, 50);
+
+	QGraphicsTextItem *text2 = scene->addText("Top View");
+	text2->setPos(350, 50);
+
+	QGraphicsTextItem *text3 = scene->addText("Side View");
+	text3->setPos(650, 50);
 }
 
 void MyQGraphicsView::setp1(float x, float y){
