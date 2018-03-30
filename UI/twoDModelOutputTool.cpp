@@ -89,7 +89,7 @@ twoDModelOutputTool::twoDModelOutputTool(TwoDModel model, MyQGraphicsView* view)
 }
 
 void twoDModelOutputTool::translateOrigin(){
-	this->originShiftAmountFrontView = getMinCoordinates(frontView);
+	originShiftAmountFrontView = getMinCoordinates(frontView);
 	this->originShiftAmountTopView = getMinCoordinates(topView);
 	this->originShiftAmountSideView = getMinCoordinates(sideView);
 }
@@ -136,14 +136,19 @@ void twoDModelOutputTool::drawModel(){
 	translateOrigin();
 	normalise();
 
-	//drawing front view only
+	//drawing front view
 	Line* frontViewLines = frontView.getLines();
 	for (int i = 0; i < frontView.getLineSize(); i++){
 		Point p1 = frontViewLines -> getFirstPoint();
 		Point p2 = frontViewLines -> getSecondPoint();
 
-		view -> setp1((p1.getX() - originShiftAmountFrontView.getX())/scaleAmountFrontView, (p1.getY() - originShiftAmountFrontView.getY())/scaleAmountFrontView);
-		view -> setp2((p2.getY() - originShiftAmountFrontView.getY())/scaleAmountFrontView, (p2.getY() - originShiftAmountFrontView.getY())/scaleAmountFrontView);
+		float p1NormalisedX = ((p1.getX() - originShiftAmountFrontView.getX())*scaleAmountFrontView) + 50.0;
+		float p1NormalisedY = ((p1.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 50.0;
+		float p2NormalisedX = ((p2.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 50.0;
+		float p2NormalisedY = ((p2.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 50.0;
+
+		view -> setp1(p1NormalisedX, p1NormalisedY);
+		view -> setp2(p2NormalisedX, p2NormalisedY);
 
 		view -> drawOutput2D();
 

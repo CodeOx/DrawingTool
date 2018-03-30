@@ -7,7 +7,7 @@
 class twoDModelOutputTool
 {
 	MyQGraphicsView* view;
-	float finalScale = 400.0;
+	float finalScale = 200.0;
 	TwoDModel model;
 	TwoDView frontView;
 	TwoDView topView;

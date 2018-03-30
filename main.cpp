@@ -93,7 +93,13 @@ int main(){
 	TwoDModelGenerator generator(model);
 
 	cout<<"output model:"<<endl;
-	cout<<generator.output().getFrontView().getPointSize();
+	TwoDModel m = generator.output();
+	Point* p1 = m.getFrontView().getPoints();
+
+	for(int i = 0; i < m.getFrontView().getPointSize(); i++){
+		cout<<(p1->getX())<<" ";
+		p1++;
+	}
 
 	return 0;
 }

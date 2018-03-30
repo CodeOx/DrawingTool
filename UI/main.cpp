@@ -11,9 +11,6 @@ int main(int argc, char *argv[])
     //startScreen screen;
  	//screen.show();
     MyQGraphicsView view;
-    view.setp1(100.0,100.0);
-    view.setp2(200.0,100.0);
-    view.drawOutput2D();
 
     Point p[8];
 	p[0].setX(0);
@@ -88,6 +85,19 @@ int main(int argc, char *argv[])
 
 	Plane pl[6];
 
+	TwoDView _2Dview;
+	_2Dview.setPoints(&p[0]);
+	_2Dview.setLines(&l[0]);
+
+	_2Dview.setPointSize(8);
+	_2Dview.setLineSize(12);
+
+	TwoDModel model2D;
+
+	model2D.setFrontView(_2Dview);
+	model2D.setTopView(_2Dview);
+	model2D.setSideView(_2Dview);
+
 	ThreeDModel model;
 
 	model.setPoints(&p[0]);
@@ -100,7 +110,7 @@ int main(int argc, char *argv[])
 
 	TwoDModelGenerator generator(model);
 
-    twoDModelOutputTool tool(generator.output(), &view);
+    twoDModelOutputTool tool(model2D, &view);
 
     tool.drawModel();
 
