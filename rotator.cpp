@@ -1,6 +1,8 @@
 #include "Rotator.h"
+#include <iostream>
 #include <cmath>
 #include <string>
+#include <cstdlib>
 #define pi 3.14159265
 
 void Rotator::setThreeDModel(ThreeDModel model){
@@ -22,7 +24,7 @@ Point rotatePointAboutX(Point p, float angle){
 	newPoint.setY(newY);
 	newPoint.setZ(newZ); 
 
-	return p;
+	return newPoint;
 }
 
 Point rotatePointAboutY(Point p, float angle){
@@ -40,7 +42,7 @@ Point rotatePointAboutY(Point p, float angle){
 	newPoint.setY(newY);
 	newPoint.setZ(newZ); 
 
-	return p;
+	return newPoint;
 }
 
 Point rotatePointAboutZ(Point p, float angle){
@@ -58,7 +60,7 @@ Point rotatePointAboutZ(Point p, float angle){
 	newPoint.setY(newY);
 	newPoint.setZ(newZ); 
 
-	return p;
+	return newPoint;
 }
 
 
@@ -68,7 +70,7 @@ Point* rotatePointsAboutX(Point* points, int size, float angle){
 		Point p = *points;
 		Point newPoint;
 		newPoint = rotatePointAboutX(p,angle);
-		rotatedPoints[i] = p;
+		rotatedPoints[i] = newPoint;
 		points++;
 	}
 	return rotatedPoints;
@@ -80,7 +82,7 @@ Point* rotatePointsAboutY(Point* points, int size, float angle){
 		Point p = *points;
 		Point newPoint;
 		newPoint = rotatePointAboutY(p,angle);
-		rotatedPoints[i] = p;
+		rotatedPoints[i] = newPoint;
 		points++;
 	}
 	return rotatedPoints;
@@ -92,7 +94,7 @@ Point* rotatePointsAboutZ(Point* points, int size, float angle){
 		Point p = *points;
 		Point newPoint;
 		newPoint = rotatePointAboutZ(p,angle);
-		rotatedPoints[i] = p;
+		rotatedPoints[i] = newPoint;
 		points++;
 	}
 	return rotatedPoints;
@@ -138,11 +140,18 @@ Line* rotateLinesAboutZ(Line* lines,int size,float angle){
 }
 
 
+Point* Rotator::debug(Point* p, int size, float angle){
+	Point* newPoint;
+	newPoint = rotatePointsAboutX(p,size,angle);
+	return newPoint;
+}
+
+
 ThreeDModel Rotator::rotate(ThreeDModel model, std::string axis, float angle){
 	std::string X("x");
 	std::string Y("y");
 	std::string Z("z");
-
+	//std::cout << "enter";
 	ThreeDModel newModel;
 	Point* oldPoints = model.getPoints();
 	Line* oldLines = model.getLines();
@@ -150,6 +159,7 @@ ThreeDModel Rotator::rotate(ThreeDModel model, std::string axis, float angle){
 	Line* newLines;
 
 	if(axis.compare(X) != 0){
+		//std::cout << "enter";
 		newPoints = rotatePointsAboutX(oldPoints,model.getPointSize(),angle);
 		newLines = rotateLinesAboutX(oldLines,model.getLineSize(),angle);
 	}
@@ -171,3 +181,4 @@ ThreeDModel Rotator::rotate(ThreeDModel model, std::string axis, float angle){
 
 	return newModel;
 }
+
