@@ -140,11 +140,11 @@ Line* rotateLinesAboutZ(Line* lines,int size,float angle){
 }
 
 
-Point* Rotator::debug(Point* p, int size, float angle){
+/*Point* Rotator::debug(Point* p, int size, float angle){
 	Point* newPoint;
 	newPoint = rotatePointsAboutX(p,size,angle);
 	return newPoint;
-}
+}*/
 
 
 ThreeDModel Rotator::rotate(ThreeDModel model, std::string axis, float angle){
