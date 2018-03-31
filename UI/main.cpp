@@ -1,16 +1,15 @@
 #include <QApplication>
 #include <startScreen.h>
-#include <fileParser.h>
 #include "twoDModelOutputTool.h"
+#include "threeDModelOutputTool.h"
 
 int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
     
-    //startScreen screen;
- 	//screen.show();
     MyQGraphicsView view;
+    threeDOutputWidget view3D;
 
     Point p[8];
 	p[0].setX(0);
@@ -108,13 +107,13 @@ int main(int argc, char *argv[])
 	model.setLineSize(12);
 	model.setPlaneSize(6);
 
-	TwoDModelGenerator generator(model);
-
     twoDModelOutputTool tool(model2D, &view);
+
+    threeDModelOutputTool tool3D(model, &view3D);
 
     tool.drawModel();
 
-    //view.show();
+    tool3D.drawModel();
 
     return a.exec();
 }

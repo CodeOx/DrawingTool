@@ -18,13 +18,15 @@ LIBS += "C:\Users\HP\Documents\iit_acad\cop290\DrawingTool\*.o"
 
 SOURCES += main.cpp\
     myqgraphicsview.cpp\
+    threeDOutputWidget.cpp\
     fileDialog.cpp\
     startScreen.cpp\
-    fileParser.cpp\
-    twoDModelOutputTool.cpp
+    twoDModelOutputTool.cpp\
+    threeDModelOutputTool.cpp
 
 HEADERS  += myqgraphicsview.h\
+			threeDOutputWidget.h\
 			fileDialog.h\
 			startScreen.h\
-			fileParser.h\
-			twoDModelOutputTool.h
+			twoDModelOutputTool.h\
+			threeDModelOutputTool.h

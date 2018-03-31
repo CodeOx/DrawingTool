@@ -2,7 +2,7 @@
 #define MYQGRAPHICSVIEW_H
 
 #include <QGraphicsView>
-#include "../TwoDModelGenerator.h"
+#include "../model.h"
 
 class MyQGraphicsView : public QGraphicsView
 {

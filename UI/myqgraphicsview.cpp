@@ -1,5 +1,4 @@
 #include <QDebug>
-#include <QMouseEvent>
 #include <QImage>
 #include <cmath>
 #include <QGraphicsTextItem>

@@ -79,6 +79,14 @@ float max(float v1, float v2, float v3){
 	}
 }
 
+twoDModelOutputTool::twoDModelOutputTool(TwoDModel model){
+	this->model = model;
+	
+	this->frontView = model.getFrontView();
+	this->topView = model.getTopView();
+	this->sideView = model.getSideView();
+}
+
 twoDModelOutputTool::twoDModelOutputTool(TwoDModel model, MyQGraphicsView* view){
 	this->model = model;
 	this->view = view;
@@ -90,8 +98,8 @@ twoDModelOutputTool::twoDModelOutputTool(TwoDModel model, MyQGraphicsView* view)
 
 void twoDModelOutputTool::translateOrigin(){
 	originShiftAmountFrontView = getMinCoordinates(frontView);
-	this->originShiftAmountTopView = getMinCoordinates(topView);
-	this->originShiftAmountSideView = getMinCoordinates(sideView);
+	originShiftAmountTopView = getMinCoordinates(topView);
+	originShiftAmountSideView = getMinCoordinates(sideView);
 }
 
 void twoDModelOutputTool::normalise(){
@@ -194,4 +202,16 @@ void twoDModelOutputTool::drawModel(){
 	}
 
 	view -> show();
+}
+
+Point twoDModelOutputTool::getOriginShiftAmountFrontView(){
+	return originShiftAmountFrontView;
+}
+
+float twoDModelOutputTool::getScaleAmountFrontView(){
+	return scaleAmountFrontView;
+}
+
+float twoDModelOutputTool::getFinalScale(){
+	return finalScale;
 }

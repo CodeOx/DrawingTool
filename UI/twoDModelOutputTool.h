@@ -18,10 +18,14 @@ class twoDModelOutputTool
 	float scaleAmountFrontView;
 	float scaleAmountTopView;
 	float scaleAmountSideView;
+public:
 	void translateOrigin();
 	void normalise();
-public:
+	twoDModelOutputTool(TwoDModel model);
 	twoDModelOutputTool(TwoDModel model, MyQGraphicsView* view);
+	Point getOriginShiftAmountFrontView();
+	float getScaleAmountFrontView();
+	float getFinalScale();
 	void drawModel();
 };
 
