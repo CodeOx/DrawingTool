@@ -2,6 +2,7 @@
 #include <startScreen.h>
 #include "twoDModelOutputTool.h"
 #include "threeDModelOutputTool.h"
+#include "../TwoDModelGenerator.h"
 
 int main(int argc, char *argv[])
 {
@@ -99,13 +100,16 @@ int main(int argc, char *argv[])
 
 	ThreeDModel model;
 
-	model.setPoints(&p[0]);
-	model.setLines(&l[0]);
-	model.setPlanes(&pl[0]);
+	model.setPoints(p);
+	model.setLines(l);
+	model.setPlanes(pl);
 	
 	model.setPointSize(8);
 	model.setLineSize(12);
 	model.setPlaneSize(6);
+
+	TwoDModelGenerator twoDgenerator(model);
+	model2D = twoDgenerator.output();
 
     twoDModelOutputTool tool(model2D, &view);
 

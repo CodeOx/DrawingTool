@@ -13,7 +13,7 @@ void threeDModelOutputTool::drawModel(){
 	//generate 2d model
 	TwoDModelGenerator twoDgenerator(model3D);
 	model2D = twoDgenerator.output();
-	TwoDView  frontView = model2D.getFrontView();
+	TwoDView frontView = model2D.getFrontView();
 
 	//get scale and shift amounts
 	twoDModelOutputTool outputTool2D(model2D);

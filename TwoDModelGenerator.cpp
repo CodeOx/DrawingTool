@@ -39,7 +39,7 @@ Line* TwoDModelGenerator::_3Dto2DLine(Line* lineArray, string plane, int arraySi
 		Point _2Dp2 = _3Dto2DPoint(_3Dp2, plane);
 		Line _2DLine;
 		_2DLine.setFirstPoint(_2Dp1);
-		_2DLine.setFirstPoint(_2Dp2);
+		_2DLine.setSecondPoint(_2Dp2);
 		_2DLineArray[i] = _2DLine;
 		lineArray++;
     }

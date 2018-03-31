@@ -515,7 +515,8 @@ debug/main.o: main.cpp C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplicati
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug \
 		twoDModelOutputTool.h \
 		threeDModelOutputTool.h \
-		threeDOutputWidget.h
+		threeDOutputWidget.h \
+		../TwoDModelGenerator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/main.o main.cpp
 
 debug/myqgraphicsview.o: myqgraphicsview.cpp C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug \
@@ -1106,7 +1107,9 @@ debug/twoDModelOutputTool.o: twoDModelOutputTool.cpp twoDModelOutputTool.h \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qgraphicsscene.h \
 		../model.h \
 		../view.h \
-		../geometry.h
+		../geometry.h \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QTextStream \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/twoDModelOutputTool.o twoDModelOutputTool.cpp
 
 debug/threeDModelOutputTool.o: threeDModelOutputTool.cpp threeDModelOutputTool.h \

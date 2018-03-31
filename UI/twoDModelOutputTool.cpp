@@ -1,4 +1,7 @@
 #include "twoDModelOutputTool.h"
+#include <QTextStream>
+#include <QDebug>
+#include <string> 
 
 Point getMinCoordinates(TwoDView view){
 	Point p;
@@ -150,6 +153,11 @@ void twoDModelOutputTool::drawModel(){
 		Point p1 = frontViewLines -> getFirstPoint();
 		Point p2 = frontViewLines -> getSecondPoint();
 
+		/*std::string a = std::to_string(p1.getX()) + ", " + std::to_string(p1.getY()) + ", " + std::to_string(p1.getZ()) + "\n";
+		std::string b = a + std::to_string(p2.getX()) + ", " + std::to_string(p2.getY()) + ", " + std::to_string(p2.getZ()) + "\n";
+		QTextStream out(stdout);
+		out << QString::fromStdString(b);*/
+
 		float p1NormalisedX = ((p1.getX() - originShiftAmountFrontView.getX())*scaleAmountFrontView) + 50.0;
 		float p1NormalisedY = ((p1.getY() - originShiftAmountFrontView.getY())*scaleAmountFrontView) + 150.0;
 		float p2NormalisedX = ((p2.getX() - originShiftAmountFrontView.getX())*scaleAmountFrontView) + 50.0;
@@ -163,7 +171,7 @@ void twoDModelOutputTool::drawModel(){
 		frontViewLines++;
 	}
 
-	//drawing front view
+	//drawing top view
 	Line* topViewLines = topView.getLines();
 	for (int i = 0; i < topView.getLineSize(); i++){
 		Point p1 = topViewLines -> getFirstPoint();
