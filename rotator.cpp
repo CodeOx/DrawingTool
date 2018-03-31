@@ -63,7 +63,7 @@ Point rotatePointAboutZ(Point p, float angle){
 
 
 Point* rotatePointsAboutX(Point* points, int size, float angle){
-	Point rotatedPoints[size];
+	Point* rotatedPoints = (Point*)malloc (size * sizeof(Point));
 	for(int i = 0; i < size; i++){
 		Point p = *points;
 		Point newPoint;
@@ -75,7 +75,7 @@ Point* rotatePointsAboutX(Point* points, int size, float angle){
 }
 
 Point* rotatePointsAboutY(Point* points, int size, float angle){
-	Point rotatedPoints[size];
+	Point* rotatedPoints = (Point*)malloc (size * sizeof(Point));
 	for(int i = 0; i < size; i++){
 		Point p = *points;
 		Point newPoint;
@@ -87,7 +87,7 @@ Point* rotatePointsAboutY(Point* points, int size, float angle){
 }
 
 Point* rotatePointsAboutZ(Point* points, int size, float angle){
-	Point rotatedPoints[size];
+	Point* rotatedPoints = (Point*)malloc (size * sizeof(Point));
 	for(int i = 0; i < size; i++){
 		Point p = *points;
 		Point newPoint;
@@ -99,7 +99,7 @@ Point* rotatePointsAboutZ(Point* points, int size, float angle){
 }
 
 Line* rotateLinesAboutX(Line* lines,int size,float angle){
-	Line rotatedLines[size];
+	Line* rotatedLines = (Line*)malloc (size * sizeof(Line));
 	for(int i = 0; i < size; i++){
 		Line l = *lines;
 		Line newLine;
@@ -112,7 +112,7 @@ Line* rotateLinesAboutX(Line* lines,int size,float angle){
 }
 
 Line* rotateLinesAboutY(Line* lines,int size,float angle){
-	Line rotatedLines[size];
+	Line* rotatedLines = (Line*)malloc (size * sizeof(Line));
 	for(int i = 0; i < size; i++){
 		Line l = *lines;
 		Line newLine;
@@ -125,7 +125,7 @@ Line* rotateLinesAboutY(Line* lines,int size,float angle){
 }
 
 Line* rotateLinesAboutZ(Line* lines,int size,float angle){
-	Line rotatedLines[size];
+	Line* rotatedLines = (Line*)malloc (size * sizeof(Line));
 	for(int i = 0; i < size; i++){
 		Line l = *lines;
 		Line newLine;
