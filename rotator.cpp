@@ -1,7 +1,11 @@
-#include "ThreeDModelGenerator.h"
+#include "Rotator.h"
 #include <cmath>
 #include <string>
 #define pi 3.14159265
+
+void Rotator::setThreeDModel(ThreeDModel model){
+	this->model = model;
+}
 
 Point rotatePointAboutX(Point p, float angle){
 	Point newPoint;
@@ -134,7 +138,7 @@ Line* rotateLinesAboutZ(Line* lines,int size,float angle){
 }
 
 
-ThreeDModel rotator(ThreeDModel model, std::string axis, float angle){
+ThreeDModel Rotator::rotate(ThreeDModel model, std::string axis, float angle){
 	std::string X("x");
 	std::string Y("y");
 	std::string Z("z");
