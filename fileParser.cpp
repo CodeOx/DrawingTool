@@ -3,9 +3,9 @@
 #include<sstream>
 #include <string>
 #include <vector>
-#include "model.h"
+#include "FileParser.h"
 
-ThreeDModel _3DModelInput(std::string filename){
+ThreeDModel FileParser::_3DModelInput(std::string filename){
 	std::ifstream infile;
 	infile.open(filename);
 	if(!infile){
@@ -75,7 +75,7 @@ ThreeDModel _3DModelInput(std::string filename){
 	return model;
 }
 
-TwoDModel _2DModelInput(std::string filename){
+TwoDModel FileParser::_2DModelInput(std::string filename){
 	std::ifstream infile;
 	infile.open(filename);
 	if(!infile){
@@ -244,7 +244,7 @@ TwoDModel _2DModelInput(std::string filename){
 	return model;
 }
 
-void fileParser(std::string filename, int choice){
+void FileParser::parseFile(std::string filename, int choice){
 	if(choice == 1){
 		_2DModelInput(filename);
 	}
