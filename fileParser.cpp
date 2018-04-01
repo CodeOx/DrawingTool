@@ -1,37 +1,38 @@
 #include <iostream>
 #include <fstream>
-#include<sstream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include "FileParser.h"
-
+//----------the vector seems to malfunctioning--------------//
+//--------Possible solution is to create iterator of vector,then store it in an array-------------//
 ThreeDModel FileParser::_3DModelInput(std::string filename){
 	std::ifstream infile;
 	infile.open(filename);
 	if(!infile){
 		std::cout << "Unable to open file";
 	}
+
 	std::string line;
 	bool pointsFlag = false;
 	bool linesFlag = false;
 	std::string points ("Points");
 	std::string lines ("Lines");
-	std::string frontView ("FrontView");
-	std::string sideView ("SideView");
-	std::string topView ("TopView");
 	ThreeDModel model;
-	Point* pointArray;
-	Line* lineArray;
+	std::vector<Point> pointArray;
+	std::vector<Line> lineArray;
 	int pointCounter = 0;
 	int lineCounter = 0;
 
 	while(std::getline(infile,line)){
-		if(line.compare(points)!= 0){
+		std::cout << "enter3" << line << std::endl;
+		if(line.compare(points) == 0){
+			//std::cout << "entering" << std::endl;
 			linesFlag = false;
 			pointsFlag = true;
 		}
 		
-		if(line.compare(lines) != 0){
+		if(line.compare(lines) == 0){
 			linesFlag = true;
 			pointsFlag = false;
 		}
@@ -40,20 +41,24 @@ ThreeDModel FileParser::_3DModelInput(std::string filename){
 
 		float x,y,z;
 		float x1,y1,z1,x2,y2,z2;
-
+		
+		//std::cout << "pointsFlag" << pointsFlag << std::endl;
 		if(pointsFlag && iss >> x >> y >> z){
+			//std::cout << "final_enter" << std::endl;
 			Point p;
 			p.setX(x);
 			p.setY(y);
 			p.setZ(z);
-			pointArray[pointCounter] = p;
+			pointArray.push_back(p);
 			pointCounter++;
 		}
 
 		if(linesFlag && iss >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
+
 			Point firstPoint;
 			Point secondPoint;
 			Line line;
+			//std::cout << "y1" << y1 << std::endl; 
 			firstPoint.setX(x1);
 			firstPoint.setY(y1);
 			firstPoint.setZ(z1);
@@ -62,15 +67,22 @@ ThreeDModel FileParser::_3DModelInput(std::string filename){
 			secondPoint.setZ(z2);
 			line.setFirstPoint(firstPoint);
 			line.setSecondPoint(secondPoint);
-			lineArray[lineCounter] = line;
+			std::cout << lineCounter << std::endl;
+			lineArray.push_back(line);
+			lineCounter++;
+			std::cout << "enter5" << std::endl;
 		}
-		//iss.close();
+		iss.clear();
 
 	}
-	model.setPoints(pointArray);
-	model.setLines(lineArray);
-	model.setPointSize(pointCounter);
-	model.setLineSize(lineCounter);
+	//std::cout << "LOLLLL" << lineArray[0].getFirstPoint().getX() << std::endl;
+	Point* newPointArray = &pointArray[0];
+	Line* newLineArray = &lineArray[0];
+	model.setPoints(newPointArray);
+	model.setLines(newLineArray);
+	std::cout << "pointCounter" << lineArray.size() << std::endl;
+	model.setPointSize(pointArray.size());
+	model.setLineSize(lineArray.size());
 	infile.close();
 	return model;
 }
@@ -96,12 +108,12 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 	TwoDView frontView;
 	TwoDView topView;
 	TwoDView sideView;
-	Point* frontPointArray;
-	Line* frontLineArray;
-	Point* topPointArray;
-	Line* topLineArray;
-	Point* sidePointArray;
-	Line* sideLineArray;
+	std::vector<Point> frontPointArray;
+	std::vector<Line> frontLineArray;
+	std::vector<Point> topPointArray;
+	std::vector<Line> topLineArray;
+	std::vector<Point> sidePointArray;
+	std::vector<Line> sideLineArray;
 	int frontPointCounter = 0;
 	int frontLineCounter = 0;
 	int topPointCounter = 0;
@@ -111,29 +123,29 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 
 	while(std::getline(infile,line)){
 
-		if(line.compare(points) != 0){
+		if(line.compare(points) == 0){
 			linesFlag = false;
 			pointsFlag = true;
 		}
 		
-		if(line.compare(lines) != 0){
+		if(line.compare(lines) == 0){
 			linesFlag = true;
 			pointsFlag = false;
 		}
 
-		if(line.compare(frontViewString)){
+		if(line.compare(frontViewString) == 0){
 			front = true;
 			top = false;
 			side = false;
 		}
 
-		if(line.compare(topViewString)){
+		if(line.compare(topViewString) == 0){
 			front = false;
 			top = true;
 			side = false;
 		}
 
-		if(line.compare(sideViewString)){
+		if(line.compare(sideViewString) == 0){
 			front = false;
 			top = false;
 			side = true;
@@ -149,7 +161,7 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 			p.setX(x);
 			p.setY(y);
 			p.setZ(z);
-			frontPointArray[frontPointCounter] = p;
+			frontPointArray.push_back(p);
 			frontPointCounter++;
 		}
 
@@ -158,7 +170,7 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 			p.setX(x);
 			p.setY(y);
 			p.setZ(z);
-			topPointArray[topPointCounter] = p;
+			topPointArray.push_back(p);
 			topPointCounter++;
 		}
 
@@ -167,7 +179,7 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 			p.setX(x);
 			p.setY(y);
 			p.setZ(z);
-			sidePointArray[sidePointCounter] = p;
+			sidePointArray.push_back(p);
 			sidePointCounter++;
 		}
 
@@ -183,7 +195,8 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 			secondPoint.setZ(z2);
 			line.setFirstPoint(firstPoint);
 			line.setSecondPoint(secondPoint);
-			frontLineArray[frontLineCounter] = line;
+			frontLineArray.push_back(line);
+			frontLineCounter++;
 		}
 
 		if(linesFlag && top && iss >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
@@ -198,7 +211,8 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 			secondPoint.setZ(z2);
 			line.setFirstPoint(firstPoint);
 			line.setSecondPoint(secondPoint);
-			topLineArray[topLineCounter] = line;
+			topLineArray.push_back(line);
+			topLineCounter++;
 		}
 
 		if(linesFlag && side && iss >> x1 >> y1 >> z1 >> x2 >> y2 >> z2){
@@ -213,25 +227,35 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 			secondPoint.setZ(z2);
 			line.setFirstPoint(firstPoint);
 			line.setSecondPoint(secondPoint);
-			sideLineArray[sideLineCounter] = line;
+			sideLineArray.push_back(line);
+			sideLineCounter++;
 		}
 
-		//iss.close();
+		iss.clear();
 
 	}
 
-	frontView.setPoints(frontPointArray);
-	frontView.setLines(frontLineArray);
+	Point* newFrontPointArray = &frontPointArray[0];
+	Line* newFrontLineArray = &frontLineArray[0];
+
+	frontView.setPoints(newFrontPointArray);
+	frontView.setLines(newFrontLineArray);
 	frontView.setPointSize(frontPointCounter);
 	frontView.setLineSize(frontLineCounter);
 
-	sideView.setPoints(sidePointArray);
-	sideView.setLines(sideLineArray);
+	Point* newSidePointArray = &sidePointArray[0];
+	Line* newSideLineArray = &sideLineArray[0];
+
+	sideView.setPoints(newSidePointArray);
+	sideView.setLines(newSideLineArray);
 	sideView.setPointSize(sidePointCounter);
 	sideView.setLineSize(sideLineCounter);
 
-	topView.setPoints(topPointArray);
-	topView.setLines(topLineArray);
+	Point* newTopPointArray = &topPointArray[0];
+	Line* newTopLineArray = &topLineArray[0];
+
+	topView.setPoints(newTopPointArray);
+	topView.setLines(newTopLineArray);
 	topView.setPointSize(topPointCounter);
 	topView.setLineSize(topLineCounter);
 
@@ -245,6 +269,7 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 }
 
 void FileParser::parseFile(std::string filename, int choice){
+	
 	if(choice == 1){
 		_2DModelInput(filename);
 	}
