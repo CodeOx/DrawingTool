@@ -9,6 +9,7 @@
 #include <threeDModelOutputTool.h>
 #include "fileDialog.h"
 #include "../TwoDModelGenerator.h"
+#include "../ThreeDModelGenerator.h"
 
 class startScreen : public QWidget
 {
