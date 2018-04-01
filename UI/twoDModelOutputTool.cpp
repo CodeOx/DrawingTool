@@ -90,7 +90,7 @@ twoDModelOutputTool::twoDModelOutputTool(TwoDModel model){
 	this->sideView = model.getSideView();
 }
 
-twoDModelOutputTool::twoDModelOutputTool(TwoDModel model, MyQGraphicsView* view){
+twoDModelOutputTool::twoDModelOutputTool(TwoDModel model, twoDOutputWidget* view){
 	this->model = model;
 	this->view = view;
 

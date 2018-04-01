@@ -19,7 +19,6 @@ char* QFileDialogTester::openFile()
     QByteArray file;
     file = filename.toUtf8();
     emit fileOpened();
-    fileOpened();
     return file.data();
 
   }

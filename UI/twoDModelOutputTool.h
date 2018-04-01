@@ -1,12 +1,12 @@
 #ifndef TWODMODELOUTPUTTOOL_H
 #define TWODMODELOUTPUTTOOL_H
 
-#include "myqgraphicsview.h"
+#include "twoDOutputWidget.h"
 #include "../model.h"
 
 class twoDModelOutputTool
 {
-	MyQGraphicsView* view;
+	twoDOutputWidget* view;
 	float finalScale = 200.0;
 	TwoDModel model;
 	TwoDView frontView;
@@ -22,7 +22,7 @@ public:
 	void translateOrigin();
 	void normalise();
 	twoDModelOutputTool(TwoDModel model);
-	twoDModelOutputTool(TwoDModel model, MyQGraphicsView* view);
+	twoDModelOutputTool(TwoDModel model, twoDOutputWidget* view);
 	Point getOriginShiftAmountFrontView();
 	float getScaleAmountFrontView();
 	float getFinalScale();

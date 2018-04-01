@@ -3,8 +3,12 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include <myqgraphicsview.h>
+#include <twoDOutputWidget.h>
+#include <twoDModelOutputTool.h>
+#include <threeDOutputWidget.h>
+#include <threeDModelOutputTool.h>
 #include "fileDialog.h"
+#include "../TwoDModelGenerator.h"
 
 class startScreen : public QWidget
 {
@@ -14,11 +18,13 @@ class startScreen : public QWidget
  private slots:
 	void button1Clicked(bool checked);
 	void button2Clicked(bool checked);
- 	void fileOpened();
+ 	void fileOpened3D();
+ 	void fileOpened2D();
  private:
   QPushButton *button1,*button2;
-  QFileDialogTester *test;
-  MyQGraphicsView view;
+  QFileDialogTester *openFile3D,*openFile2D;
+  twoDOutputWidget view2D;
+  threeDOutputWidget view3D;
   char* filename;
 
  signals:
