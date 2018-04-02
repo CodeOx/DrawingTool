@@ -18,9 +18,9 @@ public:
 	//! This function returns a list of possible vertices in a array of point objects
 	PointList PossibleVerticesConstructor();
 	//! This function returns a list of possible edges in a array of line objects
-	LineList PossibleEdgesConstructor(PointList points);
+	LineList PossibleEdgesConstructor();
 	//! This function returns a list of possible surfaces in a array of plane objects
-	planeWithLinesList PossibleSurfacesConstructor(LineList possibleEdges);
+	planeWithLinesList PossibleSurfacesConstructor();
 	//! This function checks if two given planes are duplicate or not 
 	bool DuplicatePlaneChecker(Plane p1, Plane p2);
 	//! This function returns a list of possible closed loops in a array of plane objects

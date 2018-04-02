@@ -94,8 +94,8 @@ bool lineListContains(Line l, Line* lineList, int size){
 	return false;
 }
 
-planeWithLinesList ThreeDModelGenerator::PossibleSurfacesConstructor(LineList possibleEdges){
-	Line* lines = possibleEdges.getlines();
+planeWithLinesList ThreeDModelGenerator::PossibleSurfacesConstructor(){
+	Line* lines = possibleEdges.getLines();
 	int numLines = possibleEdges.getSize();
 
 	std::vector<PlaneWithLines> list;

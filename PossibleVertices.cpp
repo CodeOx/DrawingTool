@@ -41,7 +41,7 @@ bool sideViewContainsCombined(Point p, TwoDView sideView){
 	}
 }
 
-Point* ThreeDModelGenerator::PossibleVerticesConstructor(){
+PointList ThreeDModelGenerator::PossibleVerticesConstructor(){
 	TwoDView frontView = model.getFrontView();
 	TwoDView topView = model.getTopView();
 	TwoDView sideView = model.getSideView();
@@ -61,5 +61,8 @@ Point* ThreeDModelGenerator::PossibleVerticesConstructor(){
 	}
 
 	Point* arrayThreeDPoints = &threeDPoints[0];
-	return arrayThreeDPoints;
+	PointList p;
+	p.setPoints(arrayThreeDPoints);
+	p.setSize(threeDPoints.size());
+	return p;
 }
