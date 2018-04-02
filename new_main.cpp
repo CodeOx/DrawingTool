@@ -94,5 +94,15 @@ int main(){
 	model.setTopView(top);
 	model.setSideView(side);
 
-
+	ThreeDModelGenerator g;
+	g.getTwoDModel(model);
+	PointList list;
+	list = g.PossibleVerticesConstructor();
+	Point* p = list.getPoints();
+	std::cout << list.getSize() << std::endl;
+	for(int i = 0; i < list.getSize(); i++){
+		Point n = *p;
+		cout << n.getX() << "\t" << n.getY() << "\t" << n.getZ() << endl;
+		p++;
+	}
 }
