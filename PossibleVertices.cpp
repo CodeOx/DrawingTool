@@ -39,6 +39,7 @@ bool sideViewContainsCombined(Point p, TwoDView sideView){
 		}
 		sidePoints++;
 	}
+	return false;
 }
 
 PointList ThreeDModelGenerator::PossibleVerticesConstructor(){
