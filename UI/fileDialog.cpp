@@ -3,7 +3,7 @@
 #include <fstream>
 
 
-char* QFileDialogTester::openFile()
+std::string QFileDialogTester::openFile()
 {
   QString filename =  QFileDialog::getOpenFileName(
         this,
@@ -14,12 +14,14 @@ char* QFileDialogTester::openFile()
   if( !filename.isNull() )
   {
     qDebug() << "selected file path : " << filename.toUtf8();
-    std::cout << "filename.toUtf8()";
-    
+
     QByteArray file;
     file = filename.toUtf8();
     emit fileOpened();
-    return file.data();
+
+    std::string utf8_filename = file.constData();
+
+    return utf8_filename;
 
   }
   return nullptr;

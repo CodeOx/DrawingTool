@@ -11,7 +11,14 @@ ThreeDModel ThreeDModelGenerator::output(){
 
 	ThreeDModel model;
 
-	
+	model.setPoints(possibleVertices.getPoints());
+	model.setPointSize(possibleVertices.getSize());
+
+	model.setLines(possibleEdges.getLines());
+	model.setLineSize(possibleEdges.getSize());
+
+	//model.setPlanes(possibleSurfaces.getPlanes());
+	model.setPlaneSize(possibleSurfaces.getSize());
 
 	return model;
 }

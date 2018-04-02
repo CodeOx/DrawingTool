@@ -66,6 +66,10 @@ void planeWithLinesList::setPlaneWithLines(PlaneWithLines* p){
 	this->planeWithLines = p;
 }
 
+void planeWithLinesList::setSize(int size){
+	this->size = size;
+}
+
 
 Plane PlaneWithLines::getPlane(){
 	return plane;

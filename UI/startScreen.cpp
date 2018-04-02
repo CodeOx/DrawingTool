@@ -34,10 +34,12 @@ void startScreen::button2Clicked(bool checked)
 
 void startScreen::fileOpened3D()
 {	
-	//perform file parsing here
-	//view.setThreeDModel(model);
+	TwoDModel model2D;
+	ThreeDModel model3D;
 
-	//************* model description begins **************//
+	model3D = parser._3DModelInput(filename);
+
+	//***3D********** model description begins **************/3D3D/
 
 	Point p[8];
 	p[0].setX(0);
@@ -119,38 +121,38 @@ void startScreen::fileOpened3D()
 	_2Dview.setPointSize(8);
 	_2Dview.setLineSize(12);
 
-	TwoDModel model2D;
-
 	model2D.setFrontView(_2Dview);
 	model2D.setTopView(_2Dview);
 	model2D.setSideView(_2Dview);
 
-	ThreeDModel model;
-
-	model.setPoints(p);
-	model.setLines(l);
-	model.setPlanes(pl);
+	model3D.setPoints(p);
+	model3D.setLines(l);
+	model3D.setPlanes(pl);
 	
-	model.setPointSize(8);
-	model.setLineSize(12);
-	model.setPlaneSize(6);
-
-	TwoDModelGenerator twoDgenerator(model);
-	model2D = twoDgenerator.output();
+	model3D.setPointSize(8);
+	model3D.setLineSize(12);
+	model3D.setPlaneSize(6);
 
 	//************* model description ends **************//
 
-	threeDModelOutputTool tool3D(model, &view3D);
+	TwoDModelGenerator twoDgenerator(model3D);
+	model2D = twoDgenerator.output();
+
+	threeDModelOutputTool tool3D(model3D, &view3D);
+	view3D.reset();
 	tool3D.drawModel();
 
 	twoDModelOutputTool tool2D(model2D, &view2D);
+	view2D.reset();
     tool2D.drawModel();
 }
 
 void startScreen::fileOpened2D()
 {	
-	//perform file parsing here
-	//view.setThreeDModel(model);
+	TwoDModel model2D;
+	ThreeDModel model3D;
+
+	model2D = parser._2DModelInput(filename);
 	
 	//************* model description begins **************//
 
@@ -281,21 +283,20 @@ void startScreen::fileOpened2D()
 	sv.setPointSize(4);
 	sv.setLineSize(4);
 
-	TwoDModel model2D;
-	ThreeDModel model3D;
-
 	model2D.setFrontView(fv);
 	model2D.setTopView(tv);
 	model2D.setSideView(sv);
 
-	ThreeDModelGenerator threeDgenerator(model2D);
-	//model3D = threeDgenerator.output();
-
 	//************* model description ends **************//
 
+	ThreeDModelGenerator threeDgenerator(model2D);
+	model3D = threeDgenerator.output();
+
 	threeDModelOutputTool tool3D(model3D, &view3D);
+	view3D.reset();
 	tool3D.drawModel();
 
 	twoDModelOutputTool tool2D(model2D, &view2D);
+    view2D.reset();
     tool2D.drawModel();
 }

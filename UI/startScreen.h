@@ -10,6 +10,7 @@
 #include "fileDialog.h"
 #include "../TwoDModelGenerator.h"
 #include "../ThreeDModelGenerator.h"
+#include "../FileParser.h"
 
 class startScreen : public QWidget
 {
@@ -22,11 +23,12 @@ class startScreen : public QWidget
  	void fileOpened3D();
  	void fileOpened2D();
  private:
+  FileParser parser;
   QPushButton *button1,*button2;
   QFileDialogTester *openFile3D,*openFile2D;
   twoDOutputWidget view2D;
   threeDOutputWidget view3D;
-  char* filename;
+  std::string filename;
 
  signals:
  public slots:

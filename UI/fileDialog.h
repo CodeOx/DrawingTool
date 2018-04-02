@@ -3,12 +3,13 @@
 
 #include <QFileDialog>
 #include <QDebug>
+#include <string>
 
 class QFileDialogTester : public QWidget
 {
 	Q_OBJECT
 	public:
-  		char* openFile();
+  		std::string openFile();
   	signals:
  		void fileOpened();
 };

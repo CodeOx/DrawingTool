@@ -1,5 +1,14 @@
 #include "ThreeDModelGenerator.h"
+//#include "checkEqualPoints1.h"
 #include <vector>
+
+bool checkEqualPoints1(Point p1, Point p2){
+	if(p1.getX() == p2.getX() && p1.getY() == p2.getY() && p1.getZ() == p2.getZ()){
+		return true;
+	}
+	return false;
+}
+
 
 Point crossProduct(Point p1, Point p2){
 	Point p;
@@ -10,28 +19,21 @@ Point crossProduct(Point p1, Point p2){
 	return p;
 }
 
-bool checkEqualPoints(Point p1, Point p2){
-	if(p1.getX() == p2.getX() && p1.getY() == p2.getY() && p1.getZ() == p2.getZ()){
-		return true;
-	}
-	return false;
-}
-
 bool checkEqualLines(Line l1, Line l2){
-	if(checkEqualPoints(l1.getFirstPoint(), l2.getFirstPoint()) && checkEqualPoints(l1.getSecondPoint(), l2.getSecondPoint())){
+	if(checkEqualPoints1(l1.getFirstPoint(), l2.getFirstPoint()) && checkEqualPoints1(l1.getSecondPoint(), l2.getSecondPoint())){
 		return true;
 	}
 	return false;
 }
 
 bool checkIntersecting(Line l1, Line l2){
-	if(checkEqualPoints(l1.getFirstPoint(), l2.getFirstPoint()))
+	if(checkEqualPoints1(l1.getFirstPoint(), l2.getFirstPoint()))
 		return true;
-	if(checkEqualPoints(l1.getFirstPoint(), l2.getSecondPoint()))
+	if(checkEqualPoints1(l1.getFirstPoint(), l2.getSecondPoint()))
 		return true;
-	if(checkEqualPoints(l1.getSecondPoint(), l2.getFirstPoint()))
+	if(checkEqualPoints1(l1.getSecondPoint(), l2.getFirstPoint()))
 		return true;
-	if(checkEqualPoints(l1.getSecondPoint(), l2.getSecondPoint()))
+	if(checkEqualPoints1(l1.getSecondPoint(), l2.getSecondPoint()))
 		return true;
 
 	return false;
@@ -43,7 +45,7 @@ Plane getPlane(Line l1, Line l2){
 	Point p1 = l1.getFirstPoint();
 	Point p2 = l1.getSecondPoint();
 	Point p3;
-	if(checkEqualPoints(p1, l2.getFirstPoint())){
+	if(checkEqualPoints1(p1, l2.getFirstPoint())){
 		p3 = l2.getSecondPoint();
 	}
 	else{
