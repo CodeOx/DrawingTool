@@ -103,12 +103,12 @@ int main(){
 	ThreeDModelGenerator g(model);
 	g.PossibleVerticesConstructor();
 	LineList list;
-	list = g.PossibleEdgesConstructor();
-	Line* p = list.getLines();
+	g.PossibleEdgesConstructor();
+	/*Line* p = list.getLines();
 	std::cout << list.getSize() << std::endl;
 	for(int i = 0; i < list.getSize(); i++){
 		Line n = *p;
 		std::cout << "hello" << n.getFirstPoint().getX() << "\t" << n.getFirstPoint().getY() << "\t" << n.getFirstPoint().getZ() << std::endl;
 		p++;
-	}
+	}*/
 }

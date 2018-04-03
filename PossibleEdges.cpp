@@ -24,11 +24,11 @@ bool checkLineInModel(Line l, TwoDModel model){
 }
 //! This function returns a list of possible edges in a LineList object
 //PointList, LineList, PlaneList classes need to be defined
-LineList ThreeDModelGenerator::PossibleEdgesConstructor(){
+void ThreeDModelGenerator::PossibleEdgesConstructor(){
 	PointList points = possibleVertices;
 	std::cout<<"here"<< possibleVertices.getSize()<<"hiii"<<std::endl;
 	int maxSize = points.getSize()*points.getSize();
-	Line possibleEdges[maxSize];
+	Line* possibleEdgesTemp = (Line*)malloc (maxSize*sizeof(Point));
 	int linesForEachPoint[points.getSize()];
 	for(int i = 0; i < points.getSize(); i++){
 		linesForEachPoint[i] = 0;
@@ -43,15 +43,17 @@ LineList ThreeDModelGenerator::PossibleEdgesConstructor(){
 			std::cout<<"**********"<<std::endl;
 			printLine(temp);
 			if(checkLineInModel(temp,model)){
-				possibleEdges[i] = temp;
+				std::cout<<"here?"<<std::endl;
+				possibleEdgesTemp[i] = temp;
 				linesForEachPoint[i] += 1;
+				linesForEachPoint[j] += 1;
 				lineCounter += 1;
 			}
 		}
 	}
 	//get new list of points
 	bool flag = true;
-	Point newPoints[points.getSize()];
+	Point* newPoints = (Point*)malloc ((points.getSize())*sizeof(Point));
 	int pointCounter = 0;
 	for(int i = 0; i < points.getSize(); i++){
 		if(linesForEachPoint[i] > 3){
@@ -71,9 +73,13 @@ LineList ThreeDModelGenerator::PossibleEdgesConstructor(){
 
 	if(flag){
 		LineList ob;
-		ob.setLines(possibleEdges);
+		ob.setLines(possibleEdgesTemp);
 		ob.setSize(lineCounter);
-		return ob;
+		for (int i = 0; i < lineCounter; i++){
+			std::cout<<"aaaaaaa"<<std::endl;
+			printLine(possibleEdgesTemp[i]);
+		}
+		possibleEdges = ob;
 	}
 
 	else{

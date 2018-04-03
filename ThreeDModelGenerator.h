@@ -18,7 +18,7 @@ public:
 	//! This function returns a list of possible vertices in a array of point objects
 	void PossibleVerticesConstructor();
 	//! This function returns a list of possible edges in a array of line objects
-	LineList PossibleEdgesConstructor();
+	void PossibleEdgesConstructor();
 	//! This function returns a list of possible surfaces in a array of plane objects
 	planeWithLinesList PossibleSurfacesConstructor();
 	//! This function checks if two given planes are duplicate or not 
