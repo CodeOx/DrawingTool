@@ -7,7 +7,7 @@ ThreeDModelGenerator::ThreeDModelGenerator(TwoDModel model){
 ThreeDModel ThreeDModelGenerator::output(){
 	possibleVertices = PossibleVerticesConstructor();
 	possibleEdges = PossibleEdgesConstructor();
-	possibleSurfaces = PossibleSurfacesConstructor();
+	//possibleSurfaces = PossibleSurfacesConstructor();
 
 	ThreeDModel model;
 
@@ -18,7 +18,7 @@ ThreeDModel ThreeDModelGenerator::output(){
 	model.setLineSize(possibleEdges.getSize());
 
 	//model.setPlanes(possibleSurfaces.getPlanes());
-	model.setPlaneSize(possibleSurfaces.getSize());
+	//model.setPlaneSize(possibleSurfaces.getSize());
 
 	return model;
 }

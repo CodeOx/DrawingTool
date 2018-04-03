@@ -2,7 +2,7 @@
 #include <string>
 #include "TwoDModelGenerator.h"
 #include "ThreeDModelGenerator.h"
-#include "FileParser.h"
+#include "debug.h"
 
 using namespace std;
 
@@ -100,10 +100,13 @@ int main(){
 	model.setTopView(top);
 	model.setSideView(side);
 
-	ThreeDModelGenerator g;
-	g.getTwoDModel(model);
+	std::cout<<"1"<<std::endl;
+
+	printPoint(frontPoints[0]);
+
+	ThreeDModelGenerator g(model);
 	LineList list;
-	list = g.PossibleEdgesConstructor(g.PossibleVerticesConstructor());
+	list = g.PossibleEdgesConstructor();
 	Line* p = list.getLines();
 	std::cout << list.getSize() << std::endl;
 	for(int i = 0; i < list.getSize(); i++){
