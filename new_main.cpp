@@ -100,11 +100,8 @@ int main(){
 	model.setTopView(top);
 	model.setSideView(side);
 
-	std::cout<<"1"<<std::endl;
-
-	printPoint(frontPoints[0]);
-
 	ThreeDModelGenerator g(model);
+	g.PossibleVerticesConstructor();
 	LineList list;
 	list = g.PossibleEdgesConstructor();
 	Line* p = list.getLines();

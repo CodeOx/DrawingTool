@@ -2,16 +2,10 @@
 #define DEBUG_H
 
 #include <iostream>
+#include "ThreeDModelGenerator.h"
 
-void printPoint(Point p){
-	std::cout<<"Point : " << p.getX() << " , " << p.getY() << " , " << p.getZ()<<std::endl; 
-}
+void printPoint(Point p);
 
-void printLine(Line l){
-	std::cout << "First Point : " << std::endl;
-	printPoint(l.getFirstPoint());
-	std::cout << "Second Point : " << std::endl;
-	printPoint(l.getSecondPoint());
-}
+void printLine(Line l);
 
 #endif

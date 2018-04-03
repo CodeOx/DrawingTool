@@ -16,7 +16,7 @@ public:
 	//! Input function to get the 2D model
 	ThreeDModelGenerator(TwoDModel model);
 	//! This function returns a list of possible vertices in a array of point objects
-	PointList PossibleVerticesConstructor();
+	void PossibleVerticesConstructor();
 	//! This function returns a list of possible edges in a array of line objects
 	LineList PossibleEdgesConstructor();
 	//! This function returns a list of possible surfaces in a array of plane objects

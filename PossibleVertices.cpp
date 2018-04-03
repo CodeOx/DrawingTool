@@ -1,30 +1,30 @@
 #include "ThreeDModelGenerator.h"
+#include "debug.h"
 #include <cstdlib>
 #include <iostream>
 #include <vector>
 
 //frontView has z = 0, topView has x = 0
 Point* combineFrontTop(Point* p1, Point* p2, int p1Size, int p2Size, int &combinedSize){
-	//std::cout << "enter" << std::endl;
 	std::vector<Point> combinedPoints;
-
+	Point* p2_temp = p2;
 	for(int i = 0; i < p1Size; i++){
-
 		for(int j = 0; j < p2Size; j++){
-		
+			//std::cout<<"xxx"<<std::endl;
+			//printPoint(*p1);
+			//printPoint(*p2);
 			if((*p1).getY() == (*p2).getY()){
 				
 				Point newPoint;
 				newPoint.setX( (*p1).getX());
 				newPoint.setY( (*p1).getY());
 				newPoint.setZ ((*p2).getZ());
-				//std::cout << newPoint.getX() << "\t" << newPoint.getY() << "\t" << newPoint.getZ()<< std::endl;
 				combinedPoints.push_back(newPoint);
 			}
 		
 			p2++;
 		}
-		
+		p2 = p2_temp;
 		p1++;
 	}
 
@@ -32,11 +32,8 @@ Point* combineFrontTop(Point* p1, Point* p2, int p1Size, int p2Size, int &combin
 	Point* arrayCombinedPoints = (Point*)malloc (combinedSize*sizeof(Point));
 	for(int i = 0; i < combinedSize ; i++){
 		Point n = combinedPoints[i];
-		//std::cout << n.getX() << "\t" << n.getY() << "\t" << n.getZ()<< std::endl;
 		arrayCombinedPoints[i] = combinedPoints[i];
 	}
-	
-	//Point* arrayCombinedPoints = &combinedPoints[0];
 	return arrayCombinedPoints;
 }
 
@@ -51,7 +48,7 @@ bool sideViewContainsCombined(Point p, TwoDView sideView){
 	return false;
 }
 
-PointList ThreeDModelGenerator::PossibleVerticesConstructor(){
+void ThreeDModelGenerator::PossibleVerticesConstructor(){
 	
 	TwoDView frontView = model.getFrontView();
 	TwoDView topView = model.getTopView();
@@ -61,23 +58,26 @@ PointList ThreeDModelGenerator::PossibleVerticesConstructor(){
 	
 	Point* frontPoints = frontView.getPoints();
 	Point* topPoints = topView.getPoints();
-	//std::cout << frontView.getPointSize() << std::endl;
-	//std::cout << topView.getPointSize() << std::endl;
 	int combineFrontTopSize;
 	Point* combinedFrontTop = combineFrontTop(frontPoints, topPoints, frontView.getPointSize(), topView.getPointSize(), combineFrontTopSize); 
-	//std::cout << "HERE" << combineFrontTopSize << std::endl;
+	//remove duplicates
 	int count = 0;
 	for(int i = 0; i < combineFrontTopSize; i++){
 		if(sideViewContainsCombined(*combinedFrontTop, sideView)){
 			threeDPoints.push_back(*combinedFrontTop);
+			//printPoint(*combinedFrontTop);
 			count++;
 			combinedFrontTop++;
 		}
 	}
-	//std::cout << "count" << count << std::endl;
-	Point* arrayThreeDPoints = &threeDPoints[0];
+
+	Point* arrayThreeDPoints = (Point*)malloc (count*sizeof(Point));
+	for(int i = 0; i < count ; i++){
+		arrayThreeDPoints[i] = threeDPoints[i];
+	}
+
 	PointList temp;
 	temp.setPoints(arrayThreeDPoints);
 	temp.setSize(count);
-	return temp;
+	possibleVertices = temp;
 }

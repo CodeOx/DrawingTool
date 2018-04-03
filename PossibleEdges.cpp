@@ -1,5 +1,7 @@
 #include "ThreeDModelGenerator.h"
 #include "checkEqualPoints.h"
+#include "debug.h"
+#include <iostream>
 
 bool checkLineInView(Line l, TwoDView view){
 	Line* lines;
@@ -24,6 +26,7 @@ bool checkLineInModel(Line l, TwoDModel model){
 //PointList, LineList, PlaneList classes need to be defined
 LineList ThreeDModelGenerator::PossibleEdgesConstructor(){
 	PointList points = possibleVertices;
+	std::cout<<"here"<< possibleVertices.getSize()<<"hiii"<<std::endl;
 	int maxSize = points.getSize()*points.getSize();
 	Line possibleEdges[maxSize];
 	int linesForEachPoint[points.getSize()];
@@ -37,6 +40,8 @@ LineList ThreeDModelGenerator::PossibleEdgesConstructor(){
 			Line temp;
 			temp.setFirstPoint(pointArray[i]);
 			temp.setSecondPoint(pointArray[j]);
+			std::cout<<"**********"<<std::endl;
+			printLine(temp);
 			if(checkLineInModel(temp,model)){
 				possibleEdges[i] = temp;
 				linesForEachPoint[i] += 1;
