@@ -18,11 +18,11 @@ int main(){
 	frontPoints[0].setZ(0);
 
 	frontPoints[1].setX(0);
-	frontPoints[1].setY(0);
-	frontPoints[1].setZ(1);
+	frontPoints[1].setY(1);
+	frontPoints[1].setZ(0);
 
-	frontPoints[2].setX(0);
-	frontPoints[2].setY(1);
+	frontPoints[2].setX(1);
+	frontPoints[2].setY(0);
 	frontPoints[2].setZ(0);
 
 	Point topPoints[3];
@@ -30,9 +30,9 @@ int main(){
 	topPoints[0].setY(0);
 	topPoints[0].setZ(0);
 
-	topPoints[1].setX(1);
+	topPoints[1].setX(0);
 	topPoints[1].setY(0);
-	topPoints[1].setZ(0);
+	topPoints[1].setZ(1);
 
 	topPoints[2].setX(0);
 	topPoints[2].setY(1);
@@ -47,8 +47,8 @@ int main(){
 	sidePoints[1].setY(0);
 	sidePoints[1].setZ(1);
 
-	sidePoints[2].setX(0);
-	sidePoints[2].setY(1);
+	sidePoints[2].setX(1);
+	sidePoints[2].setY(0);
 	sidePoints[2].setZ(0);
 
 	Line frontLines[3];
@@ -83,12 +83,18 @@ int main(){
 
 	front.setPoints(&frontPoints[0]);
 	front.setLines(&frontLines[0]);
+	front.setLineSize(3);
+	front.setPointSize(3);
 
 	top.setPoints(&topPoints[0]);
 	top.setLines(&topLines[0]);
+	top.setLineSize(3);
+	top.setPointSize(3);
 
 	side.setPoints(&sidePoints[0]);
 	side.setLines(&sideLines[0]);
+	side.setLineSize(3);
+	side.setPointSize(3);
 
 	model.setFrontView(front);
 	model.setTopView(top);
@@ -96,13 +102,13 @@ int main(){
 
 	ThreeDModelGenerator g;
 	g.getTwoDModel(model);
-	PointList list;
-	list = g.PossibleVerticesConstructor();
-	Point* p = list.getPoints();
+	LineList list;
+	list = g.PossibleEdgesConstructor(g.PossibleVerticesConstructor());
+	Line* p = list.getLines();
 	std::cout << list.getSize() << std::endl;
 	for(int i = 0; i < list.getSize(); i++){
-		Point n = *p;
-		cout << n.getX() << "\t" << n.getY() << "\t" << n.getZ() << endl;
+		Line n = *p;
+		std::cout << "hello" << n.getFirstPoint().getX() << "\t" << n.getFirstPoint().getY() << "\t" << n.getFirstPoint().getZ() << std::endl;
 		p++;
 	}
 }
