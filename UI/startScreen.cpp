@@ -1,5 +1,6 @@
 #include "startScreen.h"
 #include "../debug.h"
+#include <iostream>
 
 startScreen::startScreen(QWidget *parent) :
 	QWidget(parent)
@@ -19,18 +20,18 @@ startScreen::startScreen(QWidget *parent) :
 
 		connect(button1, SIGNAL (clicked(bool)), this, SLOT (button1Clicked(bool)));
 		connect(button2, SIGNAL (clicked(bool)), this, SLOT (button2Clicked(bool)));
-		connect(openFile3D, SIGNAL (fileOpened()), this, SLOT (fileOpened3D()));
-		connect(openFile2D, SIGNAL (fileOpened()), this, SLOT (fileOpened2D()));
 	}
 
 void startScreen::button1Clicked(bool checked)
 {
  	filename = openFile3D->openFile();
+ 	fileOpened3D();
 }
 
 void startScreen::button2Clicked(bool checked)
 {
  	filename = openFile2D->openFile();
+ 	fileOpened2D();
 }
 
 void startScreen::fileOpened3D()
@@ -391,11 +392,11 @@ void startScreen::fileOpened2D()
 
 	ThreeDModelGenerator threeDgenerator(model2D);
 	model3D = threeDgenerator.output();
-	std::cout << model3D.getLineSize() << std::endl;
+	/*std::cout << model3D.getLineSize() << std::endl;
 	for (int i = 0; i < model3D.getLineSize(); i++){
 		std::cout << "^^^^^^^^^^^^^^^" << std::endl;
 		printLine(model3D.getLines()[i]);
-	}
+	}*/
 
 	threeDModelOutputTool tool3D(model3D, &view3D);
 	view3D.reset();

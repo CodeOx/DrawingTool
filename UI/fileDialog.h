@@ -11,7 +11,6 @@ class QFileDialogTester : public QWidget
 	public:
   		std::string openFile();
   	signals:
- 		void fileOpened();
 };
 
 #endif

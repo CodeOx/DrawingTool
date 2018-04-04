@@ -8,7 +8,7 @@ ThreeDModelGenerator::ThreeDModelGenerator(TwoDModel model){
 ThreeDModel ThreeDModelGenerator::output(){
 	this->PossibleVerticesConstructor();
 	
-	std::cout<< std::endl<< std::endl << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << possibleVertices.getSize() << std::endl;
+	//std::cout<< std::endl<< std::endl << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << possibleVertices.getSize() << std::endl;
 	this->PossibleEdgesConstructor();
 	//possibleSurfaces = PossibleSurfacesConstructor();
 

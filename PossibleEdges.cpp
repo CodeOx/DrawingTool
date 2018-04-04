@@ -15,9 +15,9 @@ bool checkLineInFrontView(Line l, TwoDView view){
 	newLine.setSecondPoint(p2);
 	for(int i = 0; i < view.getLineSize(); i++){
 		Line viewLine = lines[i];
-		std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
-		printLine(newLine);
-		printLine(lines[i]);
+		//std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
+		//printLine(newLine);
+		//printLine(lines[i]);
 		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
 			return true;
 		}
@@ -38,9 +38,9 @@ bool checkLineInTopView(Line l, TwoDView view){
 	newLine.setSecondPoint(p2);
 	for(int i = 0; i < view.getLineSize(); i++){
 		Line viewLine = lines[i];
-		std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
-		printLine(newLine);
-		printLine(lines[i]);
+		//std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
+		//printLine(newLine);
+		//printLine(lines[i]);
 		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
 			return true;
 		}
@@ -61,9 +61,9 @@ bool checkLineInSideView(Line l, TwoDView view){
 	newLine.setSecondPoint(p2);
 	for(int i = 0; i < view.getLineSize(); i++){
 		Line viewLine = lines[i];
-		std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
-		printLine(newLine);
-		printLine(lines[i]);
+		//std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
+		//printLine(newLine);
+		//printLine(lines[i]);
 		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
 			return true;
 		}
@@ -82,7 +82,7 @@ bool checkLineInModel(Line l, TwoDModel model){
 //PointList, LineList, PlaneList classes need to be defined
 void ThreeDModelGenerator::PossibleEdgesConstructor(){
 	PointList points = possibleVertices;
-	std::cout<<"here"<< possibleVertices.getSize()<<"hiii"<<std::endl;
+	//std::cout<<"here"<< possibleVertices.getSize()<<"hiii"<<std::endl;
 	int maxSize = points.getSize()*points.getSize();
 	Line* possibleEdgesTemp = (Line*)malloc (maxSize*sizeof(Line));
 	int linesForEachPoint[points.getSize()];
@@ -96,10 +96,10 @@ void ThreeDModelGenerator::PossibleEdgesConstructor(){
 			Line temp;
 			temp.setFirstPoint(pointArray[i]);
 			temp.setSecondPoint(pointArray[j]);
-			std::cout<<"**********"<<std::endl;
-			printLine(temp);
+			//std::cout<<"**********"<<std::endl;
+			//printLine(temp);
 			if(checkLineInModel(temp,model)){
-				std::cout<<"here?"<<std::endl;
+				//std::cout<<"here?"<<std::endl;
 				possibleEdgesTemp[lineCounter] = temp;
 				linesForEachPoint[i] += 1;
 				linesForEachPoint[j] += 1;
@@ -113,8 +113,8 @@ void ThreeDModelGenerator::PossibleEdgesConstructor(){
 	int pointCounter = 0;
 	for(int i = 0; i < points.getSize(); i++){
 
-		std::cout << std::endl << linesForEachPoint[i] << "\t" << std::endl;
-		 printPoint( points.getPoints()[i]);
+		//std::cout << std::endl << linesForEachPoint[i] << "\t" << std::endl;
+		//printPoint( points.getPoints()[i]);
 
 		if(linesForEachPoint[i] >= 3){
 			newPoints[pointCounter] = pointArray[i];
@@ -135,12 +135,12 @@ void ThreeDModelGenerator::PossibleEdgesConstructor(){
 		LineList ob;
 		ob.setLines(possibleEdgesTemp);
 		ob.setSize(lineCounter);
-		for (int i = 0; i < lineCounter; i++){
+		/*for (int i = 0; i < lineCounter; i++){
 			std::cout<<"aaaaaaa"<<std::endl;
 			printLine(possibleEdgesTemp[i]);
-		}
+		}*/
 		possibleEdges = ob;
-		std::cout <<"fvagbagbadgbabvbgab" << possibleEdges.getSize() << std::endl;
+		//std::cout <<"fvagbagbadgbabvbgab" << possibleEdges.getSize() << std::endl;
 	}
 
 	else{

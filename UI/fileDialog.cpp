@@ -17,10 +17,7 @@ std::string QFileDialogTester::openFile()
 
     QByteArray file;
     file = filename.toUtf8();
-    emit fileOpened();
-
     std::string utf8_filename = file.constData();
-
     return utf8_filename;
 
   }
