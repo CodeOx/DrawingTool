@@ -1,12 +1,15 @@
 #include "ThreeDModelGenerator.h"
+#include <iostream>
 
 ThreeDModelGenerator::ThreeDModelGenerator(TwoDModel model){
 	this->model = model;
 }
 
 ThreeDModel ThreeDModelGenerator::output(){
-	possibleVertices = PossibleVerticesConstructor();
-	possibleEdges = PossibleEdgesConstructor();
+	this->PossibleVerticesConstructor();
+	
+	std::cout<< std::endl<< std::endl << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << possibleVertices.getSize() << std::endl;
+	this->PossibleEdgesConstructor();
 	//possibleSurfaces = PossibleSurfacesConstructor();
 
 	ThreeDModel model;
@@ -16,6 +19,7 @@ ThreeDModel ThreeDModelGenerator::output(){
 
 	model.setLines(possibleEdges.getLines());
 	model.setLineSize(possibleEdges.getSize());
+
 
 	//model.setPlanes(possibleSurfaces.getPlanes());
 	//model.setPlaneSize(possibleSurfaces.getSize());

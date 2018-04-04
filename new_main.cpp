@@ -101,9 +101,12 @@ int main(){
 	model.setSideView(side);
 
 	ThreeDModelGenerator g(model);
-	g.PossibleVerticesConstructor();
-	LineList list;
-	g.PossibleEdgesConstructor();
+	//g.PossibleVerticesConstructor();
+	//g.PossibleEdgesConstructor();
+	ThreeDModel mo = g.output();
+	std::cout<<"vzfbvzdgbfx "<< mo.getPointSize() << std::endl;
+	printLine(mo.getLines()[0]);
+
 	/*Line* p = list.getLines();
 	std::cout << list.getSize() << std::endl;
 	for(int i = 0; i < list.getSize(); i++){

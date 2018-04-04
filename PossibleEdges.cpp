@@ -5,12 +5,20 @@
 
 bool checkLineInFrontView(Line l, TwoDView view){
 	Line* lines;
+	Line newLine;
 	lines = view.getLines();
-	l.getFirstPoint().setZ() = 0;
-	l.getSecondPoint().setZ() = 0;
+	Point p1 = l.getFirstPoint();
+	Point p2 = l.getSecondPoint();
+	p1.setZ(0);
+	p2.setZ(0);
+	newLine.setFirstPoint(p1);
+	newLine.setSecondPoint(p2);
 	for(int i = 0; i < view.getLineSize(); i++){
 		Line viewLine = lines[i];
-		if((checkEqualPoints(l.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(l.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getFirstPoint()))){
+		std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
+		printLine(newLine);
+		printLine(lines[i]);
+		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
 			return true;
 		}
 		
@@ -20,12 +28,20 @@ bool checkLineInFrontView(Line l, TwoDView view){
 
 bool checkLineInTopView(Line l, TwoDView view){
 	Line* lines;
+	Line newLine;
 	lines = view.getLines();
-	l.getFirstPoint().setX() = 0;
-	l.getSecondPoint().setX() = 0;
+	Point p1 = l.getFirstPoint();
+	Point p2 = l.getSecondPoint();
+	p1.setX(0);
+	p2.setX(0);
+	newLine.setFirstPoint(p1);
+	newLine.setSecondPoint(p2);
 	for(int i = 0; i < view.getLineSize(); i++){
 		Line viewLine = lines[i];
-		if((checkEqualPoints(l.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(l.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getFirstPoint()))){
+		std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
+		printLine(newLine);
+		printLine(lines[i]);
+		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
 			return true;
 		}
 		
@@ -35,12 +51,20 @@ bool checkLineInTopView(Line l, TwoDView view){
 
 bool checkLineInSideView(Line l, TwoDView view){
 	Line* lines;
+	Line newLine;
 	lines = view.getLines();
-	l.getFirstPoint().setY() = 0;
-	l.getSecondPoint().setY() = 0;
+	Point p1 = l.getFirstPoint();
+	Point p2 = l.getSecondPoint();
+	p1.setY(0);
+	p2.setY(0);
+	newLine.setFirstPoint(p1);
+	newLine.setSecondPoint(p2);
 	for(int i = 0; i < view.getLineSize(); i++){
 		Line viewLine = lines[i];
-		if((checkEqualPoints(l.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(l.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getFirstPoint()))){
+		std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" <<std::endl;
+		printLine(newLine);
+		printLine(lines[i]);
+		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
 			return true;
 		}
 		
@@ -52,7 +76,7 @@ bool checkLineInModel(Line l, TwoDModel model){
 	TwoDView frontView = model.getFrontView();
 	TwoDView topView = model.getTopView();
 	TwoDView sideView = model.getSideView();
-	return ((checkLineInFrontView(l,frontView)) && (checkLineInSideView(l,sideView)) && (checkLineInTopView(l,topView)));
+	return ((checkLineInFrontView(l,frontView)) || (checkLineInSideView(l,sideView)) || (checkLineInTopView(l,topView)));
 }
 //! This function returns a list of possible edges in a LineList object
 //PointList, LineList, PlaneList classes need to be defined
@@ -60,7 +84,7 @@ void ThreeDModelGenerator::PossibleEdgesConstructor(){
 	PointList points = possibleVertices;
 	std::cout<<"here"<< possibleVertices.getSize()<<"hiii"<<std::endl;
 	int maxSize = points.getSize()*points.getSize();
-	Line* possibleEdgesTemp = (Line*)malloc (maxSize*sizeof(Point));
+	Line* possibleEdgesTemp = (Line*)malloc (maxSize*sizeof(Line));
 	int linesForEachPoint[points.getSize()];
 	for(int i = 0; i < points.getSize(); i++){
 		linesForEachPoint[i] = 0;
@@ -76,7 +100,7 @@ void ThreeDModelGenerator::PossibleEdgesConstructor(){
 			printLine(temp);
 			if(checkLineInModel(temp,model)){
 				std::cout<<"here?"<<std::endl;
-				possibleEdgesTemp[i] = temp;
+				possibleEdgesTemp[lineCounter] = temp;
 				linesForEachPoint[i] += 1;
 				linesForEachPoint[j] += 1;
 				lineCounter += 1;
@@ -88,7 +112,11 @@ void ThreeDModelGenerator::PossibleEdgesConstructor(){
 	Point* newPoints = (Point*)malloc ((points.getSize())*sizeof(Point));
 	int pointCounter = 0;
 	for(int i = 0; i < points.getSize(); i++){
-		if(linesForEachPoint[i] > 3){
+
+		std::cout << std::endl << linesForEachPoint[i] << "\t" << std::endl;
+		 printPoint( points.getPoints()[i]);
+
+		if(linesForEachPoint[i] >= 3){
 			newPoints[pointCounter] = pointArray[i];
 			pointCounter += 1;
 		}
@@ -112,6 +140,7 @@ void ThreeDModelGenerator::PossibleEdgesConstructor(){
 			printLine(possibleEdgesTemp[i]);
 		}
 		possibleEdges = ob;
+		std::cout <<"fvagbagbadgbabvbgab" << possibleEdges.getSize() << std::endl;
 	}
 
 	else{
