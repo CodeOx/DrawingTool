@@ -25,14 +25,15 @@ ThreeDModel FileParser::_3DModelInput(std::string filename){
 	int lineCounter = 0;
 
 	while(std::getline(infile,line)){
-		std::cout << "enter3" << line << std::endl;
-		if(line.compare(points) == 0){
-			//std::cout << "entering" << std::endl;
+		std::cout << "enter3" << line.substr(0,6) << "SEE" << std::endl;
+		//std::cout << 
+		if(points.compare(line.substr(0,6)) == 0){
+			std::cout << "entering" << std::endl;
 			linesFlag = false;
 			pointsFlag = true;
 		}
 		
-		if(line.compare(lines) == 0){
+		if(lines.compare(line.substr(0,5)) == 0){
 			linesFlag = true;
 			pointsFlag = false;
 		}
@@ -42,9 +43,9 @@ ThreeDModel FileParser::_3DModelInput(std::string filename){
 		float x,y,z;
 		float x1,y1,z1,x2,y2,z2;
 		
-		//std::cout << "pointsFlag" << pointsFlag << std::endl;
+		std::cout << "pointsFlag" << pointsFlag << std::endl;
 		if(pointsFlag && iss >> x >> y >> z){
-			//std::cout << "final_enter" << std::endl;
+			std::cout << "final_enter" << std::endl;
 			Point p;
 			p.setX(x);
 			p.setY(y);
@@ -76,8 +77,14 @@ ThreeDModel FileParser::_3DModelInput(std::string filename){
 
 	}
 	//std::cout << "LOLLLL" << lineArray[0].getFirstPoint().getX() << std::endl;
-	Point* newPointArray = &pointArray[0];
-	Line* newLineArray = &lineArray[0];
+	Point* newPointArray = (Point*)malloc (pointArray.size()*sizeof(Point));
+	for(int i = 0; i < pointArray.size(); i++){
+		newPointArray[i] = pointArray[i];
+	}
+	Line* newLineArray = (Line*)malloc (lineArray.size()*sizeof(Line));
+	for(int i = 0; i < lineArray.size(); i++){
+		newLineArray[i] = lineArray[i];
+	}
 	model.setPoints(newPointArray);
 	model.setLines(newLineArray);
 	std::cout << "pointCounter" << lineArray.size() << std::endl;
@@ -123,29 +130,29 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 
 	while(std::getline(infile,line)){
 
-		if(line.compare(points) == 0){
+		if(points.compare(line.substr(0,6)) == 0){
 			linesFlag = false;
 			pointsFlag = true;
 		}
 		
-		if(line.compare(lines) == 0){
+		if(lines.compare(line.substr(0,5)) == 0){
 			linesFlag = true;
 			pointsFlag = false;
 		}
 
-		if(line.compare(frontViewString) == 0){
+		if(frontViewString.compare(line.substr(0,9)) == 0){
 			front = true;
 			top = false;
 			side = false;
 		}
 
-		if(line.compare(topViewString) == 0){
+		if(topViewString.compare(line.substr(0,7)) == 0){
 			front = false;
 			top = true;
 			side = false;
 		}
 
-		if(line.compare(sideViewString) == 0){
+		if(sideViewString.compare(line.substr(0,8)) == 0){
 			front = false;
 			top = false;
 			side = true;
@@ -235,24 +242,45 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 
 	}
 
-	Point* newFrontPointArray = &frontPointArray[0];
-	Line* newFrontLineArray = &frontLineArray[0];
+	Point* newFrontPointArray = (Point*)malloc (frontPointArray.size()*sizeof(Point));
+	Line* newFrontLineArray = (Line*)malloc (frontLineArray.size()*sizeof(Line));
+
+	for(int i = 0; i < frontPointArray.size(); i++){
+		newFrontPointArray[i] = frontPointArray[i];
+	}
+	for(int i = 0; i < frontLineArray.size(); i++){
+		newFrontLineArray[i] = frontLineArray[i];
+	}
 
 	frontView.setPoints(newFrontPointArray);
 	frontView.setLines(newFrontLineArray);
 	frontView.setPointSize(frontPointCounter);
 	frontView.setLineSize(frontLineCounter);
 
-	Point* newSidePointArray = &sidePointArray[0];
-	Line* newSideLineArray = &sideLineArray[0];
+	Point* newSidePointArray = (Point*)malloc (sidePointArray.size()*sizeof(Point));
+	Line* newSideLineArray = (Line*)malloc (sideLineArray.size()*sizeof(Line));
+
+	for(int i = 0; i < sidePointArray.size(); i++){
+		newSidePointArray[i] = sidePointArray[i];
+	}
+	for(int i = 0; i < sideLineArray.size(); i++){
+		newSideLineArray[i] = sideLineArray[i];
+	}
 
 	sideView.setPoints(newSidePointArray);
 	sideView.setLines(newSideLineArray);
 	sideView.setPointSize(sidePointCounter);
 	sideView.setLineSize(sideLineCounter);
 
-	Point* newTopPointArray = &topPointArray[0];
-	Line* newTopLineArray = &topLineArray[0];
+	Point* newTopPointArray = (Point*)malloc (topPointArray.size()*sizeof(Point));
+	Line* newTopLineArray = (Line*)malloc (topLineArray.size()*sizeof(Line));
+
+	for(int i = 0; i < topPointArray.size(); i++){
+		newTopPointArray[i] = topPointArray[i];
+	}
+	for(int i = 0; i < topLineArray.size(); i++){
+		newTopLineArray[i] = topLineArray[i];
+	}
 
 	topView.setPoints(newTopPointArray);
 	topView.setLines(newTopLineArray);

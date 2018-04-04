@@ -42,7 +42,7 @@ void startScreen::fileOpened3D()
 
 	//***3D********** model description begins **************/3D3D/
 
-	Point p[8];
+/*	Point p[8];
 	p[0].setX(0);
 	p[0].setY(0);
 	p[0].setZ(0);
@@ -132,7 +132,7 @@ void startScreen::fileOpened3D()
 	
 	model3D.setPointSize(8);
 	model3D.setLineSize(12);
-	model3D.setPlaneSize(6);
+	model3D.setPlaneSize(6);*/
 
 	//************* model description ends **************//
 
@@ -157,7 +157,7 @@ void startScreen::fileOpened2D()
 	
 	//************* model description begins **************//
 
-	Point p[8];
+	/*Point p[8];
 	p[0].setX(0);
 	p[0].setY(0);
 	p[0].setZ(0);
@@ -286,14 +286,14 @@ void startScreen::fileOpened2D()
 
 	model2D.setFrontView(fv);
 	model2D.setTopView(tv);
-	model2D.setSideView(sv);
+	model2D.setSideView(sv);*/
 
 	//************* model description ends **************//
 
 
 	//*****************fvafvv*****************************//
 
-	TwoDModel model;
+/*	TwoDModel model;
 	TwoDView front;
 	TwoDView top;
 	TwoDView side;
@@ -384,7 +384,7 @@ void startScreen::fileOpened2D()
 
 	model.setFrontView(front);
 	model.setTopView(top);
-	model.setSideView(side);
+	model.setSideView(side);*/
 
 	//******************************************************//
 

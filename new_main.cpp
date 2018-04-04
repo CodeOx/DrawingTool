@@ -3,6 +3,7 @@
 #include "TwoDModelGenerator.h"
 #include "ThreeDModelGenerator.h"
 #include "debug.h"
+#include "FileParser.h"
 
 using namespace std;
 
@@ -100,18 +101,16 @@ int main(){
 	model.setTopView(top);
 	model.setSideView(side);
 
-	ThreeDModelGenerator g(model);
-	//g.PossibleVerticesConstructor();
-	//g.PossibleEdgesConstructor();
-	ThreeDModel mo = g.output();
-	std::cout<<"vzfbvzdgbfx "<< mo.getPointSize() << std::endl;
-	printLine(mo.getLines()[0]);
+	TwoDModel v;
+	TwoDView m;
+	FileParser parse;
+	Line* l;
+	v = parse._2DModelInput("input1.txt");
+	m = v.getFrontView();
+	std::cout << m.getLineSize() << std::endl;
+	std::cout << m.getPointSize() << std::endl;
+	l = m.getLines();
+	printLine(l[0]);
+	printLine(l[1]);
 
-	/*Line* p = list.getLines();
-	std::cout << list.getSize() << std::endl;
-	for(int i = 0; i < list.getSize(); i++){
-		Line n = *p;
-		std::cout << "hello" << n.getFirstPoint().getX() << "\t" << n.getFirstPoint().getY() << "\t" << n.getFirstPoint().getZ() << std::endl;
-		p++;
-	}*/
 }
