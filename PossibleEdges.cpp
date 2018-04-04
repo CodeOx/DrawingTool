@@ -3,9 +3,41 @@
 #include "debug.h"
 #include <iostream>
 
-bool checkLineInView(Line l, TwoDView view){
+bool checkLineInFrontView(Line l, TwoDView view){
 	Line* lines;
 	lines = view.getLines();
+	l.getFirstPoint().setZ() = 0;
+	l.getSecondPoint().setZ() = 0;
+	for(int i = 0; i < view.getLineSize(); i++){
+		Line viewLine = lines[i];
+		if((checkEqualPoints(l.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(l.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getFirstPoint()))){
+			return true;
+		}
+		
+	}
+	return false;
+}
+
+bool checkLineInTopView(Line l, TwoDView view){
+	Line* lines;
+	lines = view.getLines();
+	l.getFirstPoint().setX() = 0;
+	l.getSecondPoint().setX() = 0;
+	for(int i = 0; i < view.getLineSize(); i++){
+		Line viewLine = lines[i];
+		if((checkEqualPoints(l.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(l.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getFirstPoint()))){
+			return true;
+		}
+		
+	}
+	return false;
+}
+
+bool checkLineInSideView(Line l, TwoDView view){
+	Line* lines;
+	lines = view.getLines();
+	l.getFirstPoint().setY() = 0;
+	l.getSecondPoint().setY() = 0;
 	for(int i = 0; i < view.getLineSize(); i++){
 		Line viewLine = lines[i];
 		if((checkEqualPoints(l.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(l.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(l.getSecondPoint(),viewLine.getFirstPoint()))){
@@ -20,7 +52,7 @@ bool checkLineInModel(Line l, TwoDModel model){
 	TwoDView frontView = model.getFrontView();
 	TwoDView topView = model.getTopView();
 	TwoDView sideView = model.getSideView();
-	return ((checkLineInView(l,frontView)) && (checkLineInView(l,sideView)) && (checkLineInView(l,topView)));
+	return ((checkLineInFrontView(l,frontView)) && (checkLineInSideView(l,sideView)) && (checkLineInTopView(l,topView)));
 }
 //! This function returns a list of possible edges in a LineList object
 //PointList, LineList, PlaneList classes need to be defined
