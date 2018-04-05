@@ -19,7 +19,7 @@ public slots:
 
 private:
     short int count;
-    QImage img;
+    QImage *img;
     QGraphicsScene *scene;
     QPointF p1, p2;
 

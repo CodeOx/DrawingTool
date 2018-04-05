@@ -22,12 +22,20 @@ class startScreen : public QWidget
 	void button2Clicked(bool checked);
  	void fileOpened3D();
  	void fileOpened2D();
+    void rotateXClicked();
+    void rotateYClicked();
+    void rotateZClicked();
+    void setRotationAngle(int angle);
  private:
+  float rotateAngle;
+  TwoDModel model2D;
+  ThreeDModel model3D;
   FileParser parser;
   QPushButton *button1,*button2;
   QFileDialogTester *openFile3D,*openFile2D;
   twoDOutputWidget view2D;
   threeDOutputWidget view3D;
+  threeDModelOutputTool *tool3D;
   std::string filename;
 
  signals:

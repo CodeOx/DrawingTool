@@ -5,9 +5,9 @@
 
 #include "threeDOutputWidget.h"
 
-threeDOutputWidget::threeDOutputWidget(QWidget *parent) : QGraphicsView(parent), count(0), img(500, 500, QImage::Format_ARGB32)
+threeDOutputWidget::threeDOutputWidget(QWidget *parent) : QGraphicsView(parent), count(0)
 {
-	setFixedSize(500, 500);
+	setFixedSize(500, 700);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -15,7 +15,24 @@ threeDOutputWidget::threeDOutputWidget(QWidget *parent) : QGraphicsView(parent),
 	setScene(scene);
 	setSceneRect(0, 0, this->width(), this->height());
 
+	img = new QImage(500, 700, QImage::Format_ARGB32);
+
 	color = qRgb(0, 0, 0);
+
+	rotateX = new QPushButton("X", this);
+	rotateX->setGeometry(50, 600, 100, 50);
+
+	rotateY = new QPushButton("Y", this);
+	rotateY->setGeometry(200, 600, 100, 50);
+
+	rotateZ = new QPushButton("Z", this);
+	rotateZ->setGeometry(350, 600, 100, 50);
+
+	horizontalSlider = new QSlider(Qt::Horizontal,this);
+	horizontalSlider->setGeometry(50, 500, 400, 50);
+	horizontalSlider->setRange( 0, 360 );
+    horizontalSlider->setValue( 0 );
+
 }
 
 void threeDOutputWidget::setp1(float x, float y){
@@ -29,7 +46,7 @@ void threeDOutputWidget::setp2(float x, float y){
 void threeDOutputWidget::drawOutput2D()
 {
 	drawLine();
-	scene->addPixmap(QPixmap::fromImage(img));
+	scene->addPixmap(QPixmap::fromImage(*img));
 }
 
 void threeDOutputWidget::drawLine()
@@ -56,7 +73,7 @@ void threeDOutputWidget::drawLine()
 		{
 
 			qDebug() << "x:" << f.x() << "y:" << y;
-			img.setPixel(f.x(), y, color);
+			img->setPixel(f.x(), y, color);
 		}
 
 		return;
@@ -85,7 +102,7 @@ void threeDOutputWidget::drawLine()
 		{
 			int x = round(m*(y-f.y()) + f.x());
 			qDebug() << "x:" << x << "y:" << y;
-			img.setPixel(x, y, color);
+			img->setPixel(x, y, color);
 		}
 	}
 	else{
@@ -100,7 +117,7 @@ void threeDOutputWidget::drawLine()
 			int y = round(m*(x-f.x()) + f.y());
 
 			qDebug() << "x:" << x << "y:" << y;
-			img.setPixel(x, y, color);
+			img->setPixel(x, y, color);
 		}
 	}
 }
@@ -109,5 +126,6 @@ void threeDOutputWidget::reset()
 {
 	count = 0;
 	scene->clear();
+	img = new QImage(500, 700, QImage::Format_ARGB32);
 	p1 = p2 = QPoint(0, 0);
 }

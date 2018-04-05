@@ -20,7 +20,17 @@ startScreen::startScreen(QWidget *parent) :
 
 		connect(button1, SIGNAL (clicked(bool)), this, SLOT (button1Clicked(bool)));
 		connect(button2, SIGNAL (clicked(bool)), this, SLOT (button2Clicked(bool)));
+
+		connect(view3D.rotateX, SIGNAL (clicked()), this, SLOT (rotateXClicked()));
+		connect(view3D.rotateY, SIGNAL (clicked()), this, SLOT (rotateYClicked()));
+		connect(view3D.rotateZ, SIGNAL (clicked()), this, SLOT (rotateZClicked()));
+
+		connect( view3D.horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(setRotationAngle(int)) );
 	}
+
+void startScreen::setRotationAngle(int angle){
+	rotateAngle = angle;
+}
 
 void startScreen::button1Clicked(bool checked)
 {
@@ -34,11 +44,20 @@ void startScreen::button2Clicked(bool checked)
  	fileOpened2D();
 }
 
+void startScreen::rotateXClicked(){
+	tool3D->rotate("x",rotateAngle);
+}
+
+void startScreen::rotateYClicked(){
+	tool3D->rotate("y",rotateAngle);
+}
+
+void startScreen::rotateZClicked(){
+	tool3D->rotate("z",rotateAngle);
+}
+
 void startScreen::fileOpened3D()
 {	
-	TwoDModel model2D;
-	ThreeDModel model3D;
-
 	model3D = parser._3DModelInput(filename);
 
 	//***3D********** model description begins **************/3D3D/
@@ -140,9 +159,10 @@ void startScreen::fileOpened3D()
 	TwoDModelGenerator twoDgenerator(model3D);
 	model2D = twoDgenerator.output();
 
-	threeDModelOutputTool tool3D(model3D, &view3D);
+	tool3D = new threeDModelOutputTool(model3D, &view3D);
 	view3D.reset();
-	tool3D.drawModel();
+	tool3D->drawModel();
+	view3D.show();
 
 	twoDModelOutputTool tool2D(model2D, &view2D);
 	view2D.reset();
@@ -151,9 +171,6 @@ void startScreen::fileOpened3D()
 
 void startScreen::fileOpened2D()
 {	
-	TwoDModel model2D;
-	ThreeDModel model3D;
-
 	model2D = parser._2DModelInput(filename);
 	
 	//************* model description begins **************//
@@ -393,16 +410,13 @@ void startScreen::fileOpened2D()
 	ThreeDModelGenerator threeDgenerator(model2D);
 	model3D = threeDgenerator.output();
 	std::cout << model3D.getPointSize() << std::endl;
-	for (int i = 0; i < model3D.getLineSize(); i++){
-		std::cout << "^^^^^^^^^^^^^^^" << std::endl;
-		printLine(model3D.getLines()[i]);
-	}
 
-	threeDModelOutputTool tool3D(model3D, &view3D);
+	tool3D = new threeDModelOutputTool(model3D, &view3D);
 	view3D.reset();
-	tool3D.drawModel();
+	tool3D->drawModel();
+	view3D.show();
 
 	twoDModelOutputTool tool2D(model2D, &view2D);
-    view2D.reset();
+	view2D.reset();
     tool2D.drawModel();
 }

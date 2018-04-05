@@ -4,6 +4,7 @@
 #include "threeDOutputWidget.h"
 #include "twoDModelOutputTool.h"
 #include "../model.h"
+#include <string>
 
 class threeDModelOutputTool
 {
@@ -17,6 +18,7 @@ class threeDModelOutputTool
 public:
 	threeDModelOutputTool(ThreeDModel model, threeDOutputWidget* view);
 	void drawModel();
+	void rotate(std::string axis, float angle);
 };
 
 #endif

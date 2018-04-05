@@ -7,6 +7,16 @@ threeDModelOutputTool::threeDModelOutputTool(ThreeDModel model, threeDOutputWidg
 	this->view = view;
 }
 
+void threeDModelOutputTool::rotate(std::string axis, float angle){
+	Rotator r;
+	r.setThreeDModel(model3D);
+	model3D = r.rotate(model3D, axis ,angle);
+	view -> reset();
+	view -> items().clear();
+	view -> viewport()->update();
+	drawModel();
+}
+
 void threeDModelOutputTool::drawModel(){
 
 	//rotate
@@ -45,6 +55,4 @@ void threeDModelOutputTool::drawModel(){
 
 		frontViewLines++;
 	}
-
-	view -> show();
 }

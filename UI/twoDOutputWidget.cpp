@@ -5,7 +5,7 @@
 
 #include "twoDOutputWidget.h"
 
-twoDOutputWidget::twoDOutputWidget(QWidget *parent) : QGraphicsView(parent), count(0), img(900, 400, QImage::Format_ARGB32)
+twoDOutputWidget::twoDOutputWidget(QWidget *parent) : QGraphicsView(parent), count(0)
 {
 	setFixedSize(900, 400);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -14,6 +14,8 @@ twoDOutputWidget::twoDOutputWidget(QWidget *parent) : QGraphicsView(parent), cou
 	scene = new QGraphicsScene(this);
 	setScene(scene);
 	setSceneRect(0, 0, this->width(), this->height());
+
+	img = new QImage(900, 400, QImage::Format_ARGB32);
 
 	color = qRgb(0, 0, 0);
 
@@ -38,7 +40,7 @@ void twoDOutputWidget::setp2(float x, float y){
 void twoDOutputWidget::drawOutput2D()
 {
 	drawLine();
-	scene->addPixmap(QPixmap::fromImage(img));
+	scene->addPixmap(QPixmap::fromImage(*img));
 }
 
 void twoDOutputWidget::drawLine()
@@ -65,7 +67,7 @@ void twoDOutputWidget::drawLine()
 		{
 
 			qDebug() << "x:" << f.x() << "y:" << y;
-			img.setPixel(f.x(), y, color);
+			img->setPixel(f.x(), y, color);
 		}
 
 		return;
@@ -94,7 +96,7 @@ void twoDOutputWidget::drawLine()
 		{
 			int x = round(m*(y-f.y()) + f.x());
 			qDebug() << "x:" << x << "y:" << y;
-			img.setPixel(x, y, color);
+			img->setPixel(x, y, color);
 		}
 	}
 	else{
@@ -109,7 +111,7 @@ void twoDOutputWidget::drawLine()
 			int y = round(m*(x-f.x()) + f.y());
 
 			qDebug() << "x:" << x << "y:" << y;
-			img.setPixel(x, y, color);
+			img->setPixel(x, y, color);
 		}
 	}
 }
@@ -117,6 +119,7 @@ void twoDOutputWidget::drawLine()
 void twoDOutputWidget::reset()
 {
 	count = 0;
-	scene->clear();
+	scene -> clear();
+	img = new QImage(900, 400, QImage::Format_ARGB32);
 	p1 = p2 = QPoint(0, 0);
 }
