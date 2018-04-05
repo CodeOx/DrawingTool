@@ -21,6 +21,9 @@ bool checkLineInFrontView(Line l, TwoDView view){
 		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
 			return true;
 		}
+		if(checkEqualPoints(p1,p2)){
+			return true;
+		}
 		
 	}
 	return false;
@@ -42,6 +45,9 @@ bool checkLineInTopView(Line l, TwoDView view){
 		//printLine(newLine);
 		//printLine(lines[i]);
 		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
+			return true;
+		}
+		if(checkEqualPoints(p1,p2)){
 			return true;
 		}
 		
@@ -67,6 +73,9 @@ bool checkLineInSideView(Line l, TwoDView view){
 		if((checkEqualPoints(newLine.getFirstPoint(),viewLine.getFirstPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getSecondPoint())) || (checkEqualPoints(newLine.getFirstPoint(),viewLine.getSecondPoint()) && checkEqualPoints(newLine.getSecondPoint(),viewLine.getFirstPoint()))){
 			return true;
 		}
+		if(checkEqualPoints(p1,p2)){
+			return true;
+		}
 		
 	}
 	return false;
@@ -76,7 +85,7 @@ bool checkLineInModel(Line l, TwoDModel model){
 	TwoDView frontView = model.getFrontView();
 	TwoDView topView = model.getTopView();
 	TwoDView sideView = model.getSideView();
-	return ((checkLineInFrontView(l,frontView)) || (checkLineInSideView(l,sideView)) || (checkLineInTopView(l,topView)));
+	return ((checkLineInFrontView(l,frontView)) && (checkLineInSideView(l,sideView)) && (checkLineInTopView(l,topView)));
 }
 //! This function returns a list of possible edges in a LineList object
 //PointList, LineList, PlaneList classes need to be defined

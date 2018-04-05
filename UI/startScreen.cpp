@@ -392,11 +392,11 @@ void startScreen::fileOpened2D()
 
 	ThreeDModelGenerator threeDgenerator(model2D);
 	model3D = threeDgenerator.output();
-	/*std::cout << model3D.getLineSize() << std::endl;
+	std::cout << model3D.getPointSize() << std::endl;
 	for (int i = 0; i < model3D.getLineSize(); i++){
 		std::cout << "^^^^^^^^^^^^^^^" << std::endl;
 		printLine(model3D.getLines()[i]);
-	}*/
+	}
 
 	threeDModelOutputTool tool3D(model3D, &view3D);
 	view3D.reset();
