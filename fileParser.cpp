@@ -16,11 +16,15 @@ ThreeDModel FileParser::_3DModelInput(std::string filename){
 	std::string line;
 	bool pointsFlag = false;
 	bool linesFlag = false;
+	bool removeFlag = false;
 	std::string points ("Points");
 	std::string lines ("Lines");
+	std::string remove ("Remove");
 	ThreeDModel model;
 	std::vector<Point> pointArray;
 	std::vector<Line> lineArray;
+	std::vector<Point> removePointArray;
+	int removePointCounter = 0;
 	int pointCounter = 0;
 	int lineCounter = 0;
 
@@ -29,12 +33,20 @@ ThreeDModel FileParser::_3DModelInput(std::string filename){
 		//std::cout << 
 		if(points.compare(line.substr(0,6)) == 0){
 			std::cout << "entering" << std::endl;
+			removeFlag = false;
 			linesFlag = false;
 			pointsFlag = true;
 		}
 		
 		if(lines.compare(line.substr(0,5)) == 0){
+			removeFlag = false;
 			linesFlag = true;
+			pointsFlag = false;
+		}
+
+		if(remove.compare(line.substr(0,6)) == 0){
+			removeFlag = true;
+			linesFlag = false;
 			pointsFlag = false;
 		}
 
@@ -72,6 +84,16 @@ ThreeDModel FileParser::_3DModelInput(std::string filename){
 			lineArray.push_back(line);
 			lineCounter++;
 			std::cout << "enter5" << std::endl;
+		}
+
+		if(removeFlag && iss >> x >> y >> z){
+			Point p;
+			p.setX(x);
+			p.setY(y);
+			p.setZ(z);
+			removePointArray.push_back(p);
+			removePointCounter++;
+
 		}
 		iss.clear();
 
@@ -294,6 +316,46 @@ TwoDModel FileParser::_2DModelInput(std::string filename){
 
 	infile.close();
 	return model;
+}
+
+PointList FileParser::getRemovePoints(std::string filename){
+	std::ifstream infile;
+	infile.open(filename);
+	if(!infile){
+		std::cout << "Unable to open file";
+	}
+	std::string line;
+	bool read = false;
+	std::string remove ("Remove");
+	PointList points;
+	std::vector<Point> pointArray;
+	int pointCounter = 0;
+	while(std::getline(infile,line)){
+		if(remove.compare(line.substr(0,6)) == 0){
+			read = true;
+		}
+		std::istringstream iss(line);
+
+		float x,y,z;
+
+		if(read && iss >> x >> y >> z){
+			Point p;
+			p.setX(x);
+			p.setY(y);
+			p.setZ(z);
+			pointArray.push_back(p);
+			pointCounter++;
+		}
+	}
+	Point* newPointArray = (Point*)malloc (pointArray.size()*sizeof(Point));
+	for(int i = 0; i < pointArray.size(); i++){
+		newPointArray[i] = pointArray[i];
+	}
+	
+	points.setPoints(newPointArray);
+	points.setSize(pointCounter);
+
+	return points;
 }
 
 void FileParser::parseFile(std::string filename, int choice){
