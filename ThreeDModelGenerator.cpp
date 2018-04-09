@@ -26,3 +26,7 @@ ThreeDModel ThreeDModelGenerator::output(){
 
 	return model;
 }
+
+void ThreeDModelGenerator::setRemovePoints(PointList p){
+	removePoints = p;
+}
