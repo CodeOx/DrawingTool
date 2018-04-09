@@ -19,11 +19,15 @@ void threeDModelOutputTool::rotate(std::string axis, float angle){
 
 void threeDModelOutputTool::drawModel(){
 
-	//rotate
-	Rotator r;
-	r.setThreeDModel(model3D);
-	model3D = r.rotate(model3D, "x",45.0);
-	model3D = r.rotate(model3D, "z",45.0);
+	if (initialFlag){
+		//rotate
+		Rotator r;
+		r.setThreeDModel(model3D);
+		model3D = r.rotate(model3D, "x",45.0);
+		model3D = r.rotate(model3D, "z",45.0);
+
+		initialFlag = false;
+	}
 
 	//generate 2d model
 	TwoDModelGenerator twoDgenerator(model3D);
