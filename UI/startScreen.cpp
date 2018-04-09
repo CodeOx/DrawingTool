@@ -408,6 +408,7 @@ void startScreen::fileOpened2D()
 
 
 	ThreeDModelGenerator threeDgenerator(model2D);
+	threeDgenerator.setRemovePoints(parser.getRemovePoints(filename));
 	model3D = threeDgenerator.output();
 	std::cout << model3D.getPointSize() << std::endl;
 

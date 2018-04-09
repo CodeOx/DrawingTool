@@ -40,13 +40,29 @@ Point* combineFrontTop(Point* p1, Point* p2, int p1Size, int p2Size, int &combin
 bool sideViewContainsCombined(Point p, TwoDView sideView){
 	Point* sidePoints = sideView.getPoints();
 	for(int i = 0 ; i < sideView.getPointSize(); i++){
-		std::cout << "llll" << std::endl;
+		/*std::cout << "llll" << std::endl;
 		printPoint(p);
-		//printPoint(*sidePoints);
+		printPoint(*sidePoints);*/
 		if((*sidePoints).getX() == p.getX() && (*sidePoints).getZ() == p.getZ()){
 			return true;
 		}
 		sidePoints++;
+	}
+	return false;
+}
+
+bool removePointsContains(PointList removePointsList, Point p){
+	Point* removePoints = removePointsList.getPoints();
+	
+	for(int i = 0 ; i < removePointsList.getSize(); i++){
+		
+		std::cout << "SEE HERE" << std::endl;
+		printPoint(p);
+		printPoint(removePoints[i]);
+
+		if(removePoints[i].getX() == p.getX() && removePoints[i].getY() == p.getY() && removePoints[i].getZ() == p.getZ()){
+			return true;
+		}
 	}
 	return false;
 }
@@ -71,7 +87,7 @@ void ThreeDModelGenerator::PossibleVerticesConstructor(){
 	int count = 0;
 	for(int i = 0; i < combineFrontTopSize; i++){
 
-		if(sideViewContainsCombined(combinedFrontTop[i], sideView)){
+		if(sideViewContainsCombined(combinedFrontTop[i], sideView) && !removePointsContains(removePoints, combinedFrontTop[i])){
 			//printPoint(*combinedFrontTop);
 			threeDPoints.push_back(combinedFrontTop[i]);
 			//printPoint(*combinedFrontTop);

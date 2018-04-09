@@ -10,7 +10,7 @@ class ThreeDModelGenerator{
 	PointList possibleVertices;
 	LineList possibleEdges;
 	planeWithLinesList possibleSurfaces;
-
+	PointList removePoints;
 
 public:
 	//! Input function to get the 2D model
@@ -33,6 +33,7 @@ public:
 	ThreeDModel output();
 
 	void PossibleClosedLoopConstructor(PlaneWithLines possiblePlane);
+	void setRemovePoints(PointList p);
 };
 
 #endif

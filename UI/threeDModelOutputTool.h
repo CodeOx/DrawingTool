@@ -7,7 +7,8 @@
 #include <string>
 
 class threeDModelOutputTool
-{
+{	
+	bool initialFlag = true;
 	threeDOutputWidget* view;
 	float finalScale = 400.0;
 	ThreeDModel model3D;

@@ -121,5 +121,15 @@ void twoDOutputWidget::reset()
 	count = 0;
 	scene -> clear();
 	img = new QImage(900, 400, QImage::Format_ARGB32);
+
+	QGraphicsTextItem *text1 = scene->addText("Front View");
+	text1->setPos(50, 50);
+
+	QGraphicsTextItem *text2 = scene->addText("Top View");
+	text2->setPos(350, 50);
+
+	QGraphicsTextItem *text3 = scene->addText("Side View");
+	text3->setPos(650, 50);
+
 	p1 = p2 = QPoint(0, 0);
 }
